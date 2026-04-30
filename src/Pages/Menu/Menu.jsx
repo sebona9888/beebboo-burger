@@ -7,7 +7,7 @@ const Menu = () => {
     const [burgers, setBurgers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
     // Burger filatame modal irratti agarsiisuuf
     const [selectedBurger, setSelectedBurger] = useState(null);
 
@@ -18,14 +18,16 @@ const Menu = () => {
         const fetchBurgers = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://beebboo-backend.onrender.com/menu/menu');
+                // ASIRRATTI: Karaa (Route) backend keetii isa sirrii '/api/burgers' fayyadamneerra
+                const response = await axios.get('https://beebboo-backend.onrender.com/api/burgers');
+
                 if (response.data) {
                     setBurgers(response.data);
                     setError(null);
                 }
             } catch (err) {
                 console.error("❌ Error:", err);
-                setError("Backend irraa data fiduun hin danda'amne.");
+                setError("Backend irraa data fiduun hin danda'amne. Maaloo irra deebii yaali.");
             } finally {
                 setLoading(false);
             }
@@ -66,12 +68,12 @@ const Menu = () => {
                 </div>
             </div>
 
-            {/* --- BURGER MODAL (Yeroo cuqaasamu kan banamu) --- */}
+            {/* --- BURGER MODAL --- */}
             {selectedBurger && (
                 <div className="modal-overlay" onClick={() => setSelectedBurger(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="close-modal" onClick={() => setSelectedBurger(null)}>&times;</button>
-                        
+
                         <div className="modal-body">
                             <div className="modal-img-container">
                                 <img src={selectedBurger.img || selectedBurger.image} alt={selectedBurger.name} />
@@ -79,7 +81,7 @@ const Menu = () => {
                             <div className="modal-details">
                                 <h2>{selectedBurger.name}</h2>
                                 <p className="modal-category">Kategori: <span>{selectedBurger.category || "Beef"}</span></p>
-                                
+
                                 <div className="benefit-box">
                                     <h4>Maaliif filatama?</h4>
                                     <p>{selectedBurger.description || "Burger kun dhandhama haaraa fi qulqullina loonii irraa kan qophaa'edha."}</p>
@@ -92,7 +94,7 @@ const Menu = () => {
 
                                 <div className="modal-action">
                                     <span className="modal-price">{selectedBurger.price} ETB</span>
-                                    <button 
+                                    <button
                                         className="add-btn-large"
                                         onClick={() => {
                                             addToCart && addToCart(selectedBurger);
