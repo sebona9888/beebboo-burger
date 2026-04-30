@@ -1,0 +1,86 @@
+.payment-page-onyx {
+  background-color: #121212 !important;
+  /* Force Half-Black */
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 100px 5%;
+  font-family: 'Outfit', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-onyx h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.onyx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 50px;
+}
+
+.onyx-card {
+  background: #000;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.onyx-inner {
+  background: #1c1c1c;
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 1px solid #333;
+  transform: translate(-6px, -6px);
+  transition: 0.2s ease;
+}
+
+.onyx-card:hover .onyx-inner {
+  transform: translate(-10px, -10px);
+  border-color: #FFD700;
+}
+
+.onyx-number {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 15px 0;
+}
+
+.onyx-holder {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.onyx-verification {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.onyx-verify-inner {
+  background: #1c1c1c;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+.onyx-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  margin: 10px;
+  background: #FFD700;
+  color: #000;
+  text-decoration: none;
+  font-weight: 900;
+  border-radius: 8px;
+}

@@ -1,0 +1,43 @@
+.custom-btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+/* Primary Button (Orange) */
+.custom-btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 159, 28, 0.3);
+}
+
+.custom-btn.primary:hover {
+    background-color: #e68a00;
+    transform: translateY(-2px);
+}
+
+/* Secondary Button (Outline) */
+.custom-btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.custom-btn.secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Danger Button (Red - For Remove) */
+.custom-btn.danger {
+    background-color: #e71d36;
+    color: white;
+}

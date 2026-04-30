@@ -1,0 +1,93 @@
+.navbar {
+    background-color: rgba(18, 18, 18, 0.95);
+    /* Xiqqo akka calaqqisuuf */
+    backdrop-filter: blur(10px);
+    /* Duubbee isaa akka lallaafu gochuuf */
+    padding: 1rem 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #ff8c00;
+    /* Sarara burtukaana dhuuqa Beebboo */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff !important;
+    /* Adii qulqulluu ifee mul'atu */
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: #ff8c00;
+    /* Burtukaana dammaqaa */
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85) !important;
+    /* Adii lallaafaa dubbisuuf tolu */
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.4s ease;
+}
+
+.nav-links li a:hover {
+    color: #ff8c00 !important;
+    /* Hover yoo godhu burtukaana dammaqaa */
+    transform: translateY(-3px);
+}
+
+/* Cart Button Daree Style */
+.cart-btn {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    background: #ff8c00;
+    /* Halluu guutuu burtukaana */
+    padding: 10px 22px;
+    border-radius: 50px;
+    /* Geengoo bifa qabu */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.4s;
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+}
+
+.cart-btn:hover {
+    background: #ffffff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .nav-links {
+        display: none;
+        /* Mobile irratti menu dhoksuuf (yoo barbaadde) */
+    }
+}
