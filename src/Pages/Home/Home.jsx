@@ -15,6 +15,7 @@ const Home = () => {
                     </p>
                     <div className="hero-btns animate-up">
                         <Link to="/menu" className="btn btn-primary">ORDER NOW</Link>
+                        
                         <Link to="/about" className="btn btn-secondary">ABOUT US</Link>
                     </div>
                 </div>

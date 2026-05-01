@@ -1,4 +1,4 @@
-/* --- HOME.CSS: DAREE BURGER PREMIUM EDITION --- */
+/* --- HOME.CSS: BEEBBOO BURGER PREMIUM EDITION --- */
 
 .home-container {
     min-height: 100vh;
@@ -10,14 +10,13 @@
     background-color: #0b0b0f;
 }
 
-/* --- BRAND WATERMARK (Daree Burger Background Text) --- */
+/* --- BRAND WATERMARK --- */
 .home-container::after {
-    content: "DAREE BURGER";
+    content: "BEEBBOO BURGER";
     position: absolute;
     font-size: 15rem;
     font-weight: 900;
     color: rgba(255, 255, 255, 0.02);
-    /* Extremely subtle */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-10deg);
@@ -48,7 +47,7 @@
     z-index: 2;
 }
 
-/* --- TYPOGRAPHY (Daree Style) --- */
+/* --- TYPOGRAPHY --- */
 .hero-content h1 {
     font-size: 5.5rem;
     font-weight: 900;
@@ -62,11 +61,9 @@
 .hero-content h1 span {
     color: #ff7a00;
     display: block;
-    /* Makes "Burger" stand out on a new line */
     text-shadow: 0 0 40px rgba(255, 122, 0, 0.2);
 }
 
-/* Tagline / Description */
 .hero-content p {
     font-size: 1.2rem;
     color: #bfbfbf;
@@ -74,11 +71,10 @@
     margin-bottom: 40px;
     max-width: 500px;
     border-left: 4px solid #ff7a00;
-    /* Daree Accent Line */
     padding-left: 20px;
 }
 
-/* --- IMAGE SECTION (FULL CIRCLE FILL) --- */
+/* --- IMAGE SECTION --- */
 .hero-image-container {
     display: flex;
     justify-content: center;
@@ -98,7 +94,6 @@
     align-items: center;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
     border: 10px solid rgba(255, 255, 255, 0.05);
-    /* Professional Ring Border */
 }
 
 .floating-burger {
@@ -123,27 +118,45 @@
 }
 
 /* --- BUTTONS --- */
-.btn-primary {
+.btn-primary,
+.order-btn {
     background: #ff7a00;
     color: #0b0b0f;
     padding: 20px 50px;
     border-radius: 8px;
-    /* Sharper "Daree" pro look */
     font-weight: 900;
     cursor: pointer;
     text-transform: uppercase;
     transition: 0.3s ease;
     border: none;
+    display: inline-block;
+    text-decoration: none;
     box-shadow: 0 15px 30px rgba(255, 122, 0, 0.3);
 }
 
-.btn-primary:hover {
-    background: #ffffff;
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+.btn-secondary,
+.about-btn {
+    background: transparent;
+    color: #ffffff;
+    padding: 18px 48px;
+    border-radius: 8px;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    text-decoration: none;
+    margin-left: 15px;
 }
 
-/* --- MOBILE --- */
+.btn-primary:hover,
+.order-btn:hover {
+    background: #ffffff;
+    transform: translateY(-5px);
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
 @media (max-width: 992px) {
     .hero {
         grid-template-columns: 1fr;
@@ -154,41 +167,65 @@
         font-size: 3.8rem;
     }
 
-    .hero-content p {
-        margin: 20px auto 40px;
-        text-align: left;
-    }
-
     .blob-frame {
         width: 350px;
         height: 350px;
     }
+}
 
-    .home-container::after {
-        font-size: 8rem;
+@media (max-width: 768px) {
+    .home-container {
+        padding: 80px 20px;
+        /* Header jalaa akka hin lixne */
     }
-}@media (max-width: 768px) {
 
-    /* Nyaata Qulqulluu Beebboo Burger jedhu xiqqeessuuf */
-    .hero-title,
-    h1 {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
+    .hero-content h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+        letter-spacing: -1px;
+    }
+
+    .hero-content p {
+        margin: 20px auto 30px;
+        text-align: center;
+        border-left: none;
+        padding-left: 0;
+        font-size: 1rem;
+    }
+
+    /* Overlap Fix: Batoonni akka gadi hiriiran gochuuf */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary,
+    .order-btn,
+    .btn-secondary,
+    .about-btn {
+        width: 100%;
+        /* Silkii irratti guutuu akka ta'an */
+        max-width: 300px;
+        margin: 10px 0 !important;
+        /* Gidduu isaanii fageenya uuma */
+        padding: 15px 0 !important;
         text-align: center;
     }
 
-    /* Button "Order Now" jedhu qulqulleessuuf */
-    .order-btn {
-        padding: 10px 20px !important;
-        font-size: 1rem !important;
-        width: 90%;
-        /* Silkii irratti akka bal'atu */
-        margin: 10px auto;
+    .btn-secondary,
+    .about-btn {
+        margin-left: 0 !important;
+        /* Mobaayila irratti margin bitaa balleessi */
     }
 
-    /* Hero section-ni iskiiriinii akka hin caalle */
-    .hero-section {
-        padding: 40px 10px !important;
-        min-height: auto !important;
+    .blob-frame {
+        width: 280px !important;
+        height: 280px !important;
+        margin-top: 30px;
+    }
+
+    .home-container::after {
+        font-size: 5rem;
     }
 }
