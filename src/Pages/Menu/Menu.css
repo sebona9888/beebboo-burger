@@ -5,11 +5,8 @@
     --card: rgba(15, 23, 42, 0.75);
     --border: rgba(255, 255, 255, 0.06);
     --primary: #f97316;
-    /* orange */
     --secondary: #3b82f6;
-    /* blue */
     --accent: #facc15;
-    /* yellow */
     --text: #e2e8f0;
     --muted: #94a3b8;
 }
@@ -24,42 +21,57 @@
         radial-gradient(circle at 50% 90%, rgba(250, 204, 21, 0.1), transparent 50%),
         linear-gradient(135deg, #020617, #0f172a 60%, #111827);
     background-attachment: fixed;
-    /* Desktop irratti qofa */
 }
 
-/* ===== TITLE & SUBTITLE ===== */
-.menu-title {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+/* ===== SEARCH & FILTER UI ===== */
+.filter-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.search-input {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #1e293b;
     color: white;
+    width: 100%;
+    max-width: 400px;
+    outline: none;
+    transition: 0.3s;
 }
 
-.menu-title span {
-    background: linear-gradient(90deg, #f97316, #facc15);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
 }
 
-.menu-title::after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 3px;
-    margin: 10px auto;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 10px;
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.menu-subtitle {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 50px;
-    font-size: 1rem;
+.tab-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* ===== GRID ===== */
+.tab-btn.active,
+.tab-btn:hover {
+    background: var(--primary);
+}
+
+/* ===== GRID & CARD ===== */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -68,122 +80,115 @@
     margin: 0 auto;
 }
 
-/* ===== CARD ===== */
 .menu-card {
-    position: relative;
     background: var(--card);
     backdrop-filter: blur(12px);
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .menu-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(249, 115, 22, 0.25);
-    border-color: rgba(249, 115, 22, 0.4);
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
-.menu-card img {
+.menu-img-box {
     width: 100%;
-    height: 180px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.menu-img-box img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transition: 0.4s;
 }
 
-.menu-card-body {
+.menu-info {
     padding: 20px;
-    z-index: 1;
 }
 
-.price {
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 1.2rem;
+/* ===== MODAL (RAKKOO ZOOMII KANAAN SIRREEI) ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
 }
 
-.view-btn {
-    margin-top: 15px;
-    background: linear-gradient(135deg, var(--primary), #fb923c);
+.modal-content {
+    background: #0f172a;
+    width: 100%;
+    max-width: 450px;
+    /* HAMMA SIRRII */
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-img-container {
+    width: 100%;
+    height: 250px;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Suuraan akka hin baballanne godha */
+}
+
+.modal-details {
+    padding: 20px;
+    color: white;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 600;
+    font-size: 25px;
     cursor: pointer;
-    width: 100%;
-    /* Mobaayilaaf tolcha */
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    z-index: 10;
 }
 
-/* ===== RESPONSIVE FIX (MAALOO KANA KOPY GODHI) ===== */
+.add-btn-large {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .menu-section {
-        padding: 40px 15px;
-        background-attachment: scroll;
-        /* Mobile irratti fixed ni dhaabna */
-    }
-
-    .menu-title {
-        font-size: 2.2rem;
-    }
-
     .menu-grid {
         grid-template-columns: 1fr;
-        /* Card-ii tokko tokkoon gadi hiriirsa */
-        gap: 20px;
     }
 
-    .menu-card {
-        max-width: 380px;
-        margin: 0 auto;
+    .modal-content {
+        max-width: 95%;
     }
-
-    .view-btn {
-        padding: 12px;
-        /* Mobaayila irratti tuquuf akka tolu */
-    }
-}.burger-item {
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Koodii kanaan duraa irratti kana dabaladhu */
-}
-
-.burger-item:active {
-    transform: scale(0.95);
-    /* Yeroo tuqan xiqqoo gadi bu'a (Effect) */
-}.filter-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.search-input {
-    padding: 12px 20px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #1e293b;
-    color: white;
-    width: 100%;
-    max-width: 400px;
-}
-
-.category-tabs {
-    display: flex;
-    gap: 10px;
-}
-
-.tab-btn {
-    padding: 8px 18px;
-    border-radius: 20px;
-    background: transparent;
-    color: white;
-    border: 1px solid #f97316;
-    cursor: pointer;
-}
-
-.tab-btn.active {
-    background: #f97316;
 }
