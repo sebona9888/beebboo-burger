@@ -110,7 +110,7 @@ const About = () => {
                 <div className="team-grid">
                     <div className="team-card">
                         <div className="chef-img-wrapper">
-                            <img src="https://tccewaslmsezbqicosct.supabase.co/storage/v1/object/public/images/BEBO.jpg
+                            <img src="https://fkiqubgtnczwpemqvjuf.supabase.co/storage/v1/object/public/beebboo/burger.jpg
                         " />
                         </div>
                         <h4>beebboo beyana</h4>
@@ -118,7 +118,7 @@ const About = () => {
                     </div>
                     <div className="team-card">
                         <div className="chef-img-wrapper">
-                            <img src="https://tccewaslmsezbqicosct.supabase.co/storage/v1/object/public/images/bur%20workers.jpg    " alt="Chef Team" />
+                            <img src="https://fkiqubgtnczwpemqvjuf.supabase.co/storage/v1/object/public/beebboo/bur%20workers.jpg     " alt="Chef Team" />
                         </div>
                         <h4>Expert Team</h4>
                         <p>Burger Specialist</p>
