@@ -6,7 +6,7 @@ const AdminDashboard = () => {
     const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [burgers, setBurgers] = useState([]);
-    const [isLoading, setIsLoading] = useState(false); // Loading state
+    const [isLoading, setIsLoading] = useState(false);
 
     const [newBurger, setNewBurger] = useState({
         name: '',
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
     });
 
     // --- 1. RAGAALEE FIDUU (GET) ---
-    // useCallback fayyadamuun performance fooyyessa
+    // URL '/api/burgers' irraa gara '/api/menu' tti jijjiirameera (FIX 404)
     const fetchBurgers = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -58,7 +58,6 @@ const AdminDashboard = () => {
     const handleAddBurger = async (e) => {
         e.preventDefault();
 
-        // Gatii check gochuu (Gatiin 0 gadi ta'uu hin qabu)
         if (newBurger.price <= 0) {
             return alert("Gatiin 0 gadi ta'uu hin qabu!");
         }
@@ -153,7 +152,7 @@ const AdminDashboard = () => {
                 <h3>Burgers List</h3>
                 <div className="burger-list">
                     {isLoading ? (
-                        <p>Loading...</p>
+                        <p className="loading-text">Hancaa jira (Loading)...</p>
                     ) : burgers.length > 0 ? (
                         burgers.map((burger) => (
                             <div key={burger._id} className="burger-item">
@@ -161,7 +160,6 @@ const AdminDashboard = () => {
                                     <strong>{burger.name}</strong> - {burger.price} ETB
                                     <span className="category-tag">{burger.category}</span>
                                 </div>
-                                {/* --- BUTTON BALLEESSUU (ASITTI DABALAME) --- */}
                                 <button
                                     className="btn-delete"
                                     onClick={() => deleteBurger(burger._id)}
