@@ -159,4 +159,41 @@
     .menu-title {
         font-size: 2.2rem;
     }
+        /* --- Mobile Responsive Fix --- */
+    
+        @media (max-width: 768px) {
+            .menu-title {
+                font-size: 2.2rem;
+                /* Title-ichi akka iskiiriinii hin dhiphisne */
+            }
+    
+            .menu-grid {
+                grid-template-columns: 1fr;
+                /* Mobaayila irratti card-ii tokko qofa sarara tokkoon agarsiisa */
+                gap: 20px;
+                padding: 0 10px;
+            }
+    
+            .menu-card {
+                margin: 0 auto;
+                max-width: 350px;
+                /* Card-iin mobaayila irratti baay'ee akka hin bal'anne */
+            }
+    
+            .menu-img-box {
+                height: 200px;
+                /* Suuraan mobaayila irratti xiqqoo akka gabaabbatu */
+            }
+    
+            .menu-section {
+                padding: 40px 10px;
+                background-attachment: scroll;
+                /* Mobaayila irratti 'fixed' ta'uun 'performance' miidhuu danda'a */
+            }
+    
+            .badge-fresh {
+                font-size: 0.6rem;
+                padding: 4px 25px;
+            }
+        }
 }
