@@ -1,100 +1,90 @@
-/* --- NAVBAR PREMIUM UI --- */
+/* --- NAVBAR PREMIUM & COMPACT UI --- */
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 8%;
-    /* Padding bal'isneerra */
+    padding: 1rem 8%;
     background-color: rgba(2, 6, 23, 0.9);
-    /* Xiqqoo akka fuulleetti (Glassy) */
     backdrop-filter: blur(12px);
-    /* Background akka calaqqisu gochuuf */
     position: fixed;
-    /* Gubaatti akka hidhamu */
     top: 0;
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    /* Sarara qalloo babbaxxee */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
 }
 
 .navbar a {
     text-decoration: none !important;
     color: rgba(255, 255, 255, 0.85) !important;
-    /* Adii laafaa */
     font-weight: 700;
     font-size: 0.95rem;
     transition: all 0.3s ease;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: 0.5px;
 }
 
-/* Yeroo Mouse irra kaayan (Hover Effects) */
 .navbar a:hover {
     color: #FFD700 !important;
-    /* Halluu Warqee (Gold) */
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    transform: translateY(-2px);
 }
 
 .nav-links {
     display: flex;
-    gap: 35px;
-    /* Gidduu isaanii bal'isneerra */
+    gap: 30px;
     list-style: none;
     align-items: center;
 }
 
-/* --- LOGO STYLE --- */
 .navbar-logo {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: #ffffff !important;
     text-transform: uppercase;
     font-family: 'Outfit', sans-serif;
 }
 
-/* --- MOBILE UI OPTIMIZATION (Silkii Irratti) --- */
+/* --- MOBILE COMPACT OPTIMIZATION (Fix for image_3d9974.png) --- */
 @media (max-width: 768px) {
     .navbar {
-        padding: 15px 5% !important;
+        padding: 10px 5% !important;
+        flex-direction: column !important;
+        /* Logo fi Links gadi hiriiru */
         background-color: #020617 !important;
-        /* Mobaayila irratti qulqulluu gooneera */
-        flex-direction: row !important;
-        /* Logo fi Menu wal-bira akka hiriiran */
+    }
+
+    .navbar-logo {
+        font-size: 1.1rem;
+        /* Logo xiqqeessineerra */
     }
 
     .nav-links {
         display: flex;
         flex-wrap: wrap !important;
         justify-content: center;
-        gap: 10px !important;
-        margin-top: 15px !important;
+        gap: 6px !important;
+        /* Gidduu isaanii baay'ee dhiphifneerra */
+        margin-top: 8px !important;
         width: 100%;
-        padding-bottom: 10px;
     }
 
     .nav-links a {
-        background: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        padding: 10px 18px !important;
-        /* Qubaan tuquuf bal'isneerra */
-        border-radius: 14px !important;
-        font-size: 0.8rem !important;
-        font-weight: 800;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 6px 12px !important;
+        /* Kardiwwan dhiphoo gooneerra */
+        border-radius: 8px !important;
+        font-size: 0.7rem !important;
+        /* Qubee xiqqeessineerra */
+        font-weight: 700;
         text-transform: uppercase;
-        display: inline-block;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
     }
 
-    /* Silkii irratti yeroo tuqan akka calaqqisu (Touch State) */
     .nav-links a:active {
-        background: #FFD700 !important;
-        color: #020617 !important;
-        transform: scale(0.95);
+        background: #FF9F1C !important;
+        /* Halluu Beebboo Burger */
+        color: #000 !important;
     }
 }
