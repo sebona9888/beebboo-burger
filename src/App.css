@@ -1,0 +1,70 @@
+/* --- Navigation Mobile Fix --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column !important;
+        /* Menu-wwan gadi hiriiru */
+        align-items: center !important;
+        padding: 10px !important;
+    }
+
+    .nav-links,
+    .menu-links {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Home, Menu, Order sarara tokkoon akka ta'an */
+        justify-content: center !important;
+        gap: 15px !important;
+        /* Gidduu isaanii fageenya uumuuf */
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    .nav-links a,
+    .nav-links li {
+        font-size: 0.9rem !important;
+        /* Barreeffamni silkii irratti akka hin gurguddanne */
+    }
+}/* --- Navigation Mobile Fix --- */
+@media (max-width: 768px) {
+
+    /* Header-ii ykn Nav-ii kee guutuuf */
+    nav,
+    header {
+        display: flex !important;
+        flex-direction: column !important;
+        /* Logo gubbaa, menu-wwan gadi akka ta'an */
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 15px 10px !important;
+    }
+
+    /* Home, Menu, Order barreeffama isaanii sirreessuuf */
+    .nav-links,
+    .menu-links,
+    ul {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Sarara tokkoon (Horizontal) akka hiriiran */
+        justify-content: center !important;
+        gap: 15px !important;
+        /* Gidduu isaanii fageenya uumuuf */
+        list-style: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    .nav-links a,
+    li a {
+        font-size: 0.9rem !important;
+        /* Silkii irratti akka hin gurguddanne */
+        text-decoration: none !important;
+        white-space: nowrap !important;
+        /* Barreeffamni bakka lamatti akka hin hiramne */
+    }
+
+    /* Logo 'BEEBBOO BURGER' silkii irratti xiqqeessuuf */
+    .logo h1 {
+        font-size: 1.5rem !important;
+        text-align: center !important;
+    }
+}

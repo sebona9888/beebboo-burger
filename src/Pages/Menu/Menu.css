@@ -4,14 +4,12 @@
     --bg-soft: #0f172a;
     --card: rgba(15, 23, 42, 0.75);
     --border: rgba(255, 255, 255, 0.06);
-
     --primary: #f97316;
     /* orange */
     --secondary: #3b82f6;
     /* blue */
     --accent: #facc15;
     /* yellow */
-
     --text: #e2e8f0;
     --muted: #94a3b8;
 }
@@ -20,15 +18,16 @@
 .menu-section {
     padding: 70px 20px;
     min-height: 100vh;
-
     background:
         radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.15), transparent 40%),
         radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.12), transparent 40%),
         radial-gradient(circle at 50% 90%, rgba(250, 204, 21, 0.1), transparent 50%),
         linear-gradient(135deg, #020617, #0f172a 60%, #111827);
+    background-attachment: fixed;
+    /* Desktop irratti qofa */
 }
 
-/* ===== TITLE ===== */
+/* ===== TITLE & SUBTITLE ===== */
 .menu-title {
     text-align: center;
     font-size: 3rem;
@@ -43,7 +42,6 @@
     -webkit-text-fill-color: transparent;
 }
 
-/* subtle line under title */
 .menu-title::after {
     content: "";
     display: block;
@@ -54,7 +52,6 @@
     border-radius: 10px;
 }
 
-/* ===== SUBTITLE ===== */
 .menu-subtitle {
     text-align: center;
     color: var(--muted);
@@ -65,8 +62,10 @@
 /* ===== GRID ===== */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* ===== CARD ===== */
@@ -80,16 +79,12 @@
     transition: all 0.3s ease;
 }
 
-/* hover effect */
 .menu-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.6),
-        0 0 20px rgba(249, 115, 22, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(249, 115, 22, 0.25);
     border-color: rgba(249, 115, 22, 0.4);
 }
 
-/* ===== IMAGE ===== */
 .menu-card img {
     width: 100%;
     height: 180px;
@@ -97,103 +92,55 @@
     transition: 0.4s;
 }
 
-.menu-card:hover img {
-    transform: scale(1.08);
-}
-
-/* overlay gradient */
-.menu-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-    pointer-events: none;
-}
-
-/* ===== CARD BODY ===== */
 .menu-card-body {
-    padding: 15px;
-    position: relative;
+    padding: 20px;
     z-index: 1;
 }
 
-.menu-card-body h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-/* ===== PRICE ===== */
 .price {
     color: var(--accent);
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-/* ===== DESCRIPTION ===== */
-.menu-card-body p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 6px;
-}
-
-/* ===== BUTTON ===== */
 .view-btn {
-    margin-top: 12px;
+    margin-top: 15px;
     background: linear-gradient(135deg, var(--primary), #fb923c);
     color: white;
     border: none;
-    padding: 9px 16px;
+    padding: 10px 20px;
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.25s;
+    width: 100%;
+    /* Mobaayilaaf tolcha */
 }
 
-.view-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
-}
+/* ===== RESPONSIVE FIX (MAALOO KANA KOPY GODHI) ===== */
+@media (max-width: 768px) {
+    .menu-section {
+        padding: 40px 15px;
+        background-attachment: scroll;
+        /* Mobile irratti fixed ni dhaabna */
+    }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
     .menu-title {
         font-size: 2.2rem;
     }
-        /* --- Mobile Responsive Fix --- */
-    
-        @media (max-width: 768px) {
-            .menu-title {
-                font-size: 2.2rem;
-                /* Title-ichi akka iskiiriinii hin dhiphisne */
-            }
-    
-            .menu-grid {
-                grid-template-columns: 1fr;
-                /* Mobaayila irratti card-ii tokko qofa sarara tokkoon agarsiisa */
-                gap: 20px;
-                padding: 0 10px;
-            }
-    
-            .menu-card {
-                margin: 0 auto;
-                max-width: 350px;
-                /* Card-iin mobaayila irratti baay'ee akka hin bal'anne */
-            }
-    
-            .menu-img-box {
-                height: 200px;
-                /* Suuraan mobaayila irratti xiqqoo akka gabaabbatu */
-            }
-    
-            .menu-section {
-                padding: 40px 10px;
-                background-attachment: scroll;
-                /* Mobaayila irratti 'fixed' ta'uun 'performance' miidhuu danda'a */
-            }
-    
-            .badge-fresh {
-                font-size: 0.6rem;
-                padding: 4px 25px;
-            }
-        }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        /* Card-ii tokko tokkoon gadi hiriirsa */
+        gap: 20px;
+    }
+
+    .menu-card {
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .view-btn {
+        padding: 12px;
+        /* Mobaayila irratti tuquuf akka tolu */
+    }
 }

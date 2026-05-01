@@ -167,4 +167,28 @@
     .home-container::after {
         font-size: 8rem;
     }
+}@media (max-width: 768px) {
+
+    /* Nyaata Qulqulluu Beebboo Burger jedhu xiqqeessuuf */
+    .hero-title,
+    h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+        text-align: center;
+    }
+
+    /* Button "Order Now" jedhu qulqulleessuuf */
+    .order-btn {
+        padding: 10px 20px !important;
+        font-size: 1rem !important;
+        width: 90%;
+        /* Silkii irratti akka bal'atu */
+        margin: 10px auto;
+    }
+
+    /* Hero section-ni iskiiriinii akka hin caalle */
+    .hero-section {
+        padding: 40px 10px !important;
+        min-height: auto !important;
+    }
 }

@@ -90,4 +90,30 @@
         display: none;
         /* Mobile irratti menu dhoksuuf (yoo barbaadde) */
     }
+}/* --- Navigation Mobile Fix --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column !important;
+        /* Menu-wwan gadi hiriiru */
+        align-items: center !important;
+        padding: 10px !important;
+    }
+
+    .nav-links,
+    .menu-links {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Home, Menu, Order sarara tokkoon akka ta'an */
+        justify-content: center !important;
+        gap: 15px !important;
+        /* Gidduu isaanii fageenya uumuuf */
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    .nav-links a,
+    .nav-links li {
+        font-size: 0.9rem !important;
+        /* Barreeffamni silkii irratti akka hin gurguddanne */
+    }
 }
