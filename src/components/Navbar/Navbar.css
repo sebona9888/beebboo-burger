@@ -1,69 +1,43 @@
-/* ======================================================
-    MOBILE NAVBAR DESIGN UPGRADE
-   ====================================================== */
+/* Linkiiwwan hunda qulqulleessuuf */
+.navbar a {
+    text-decoration: none !important;
+    color: white !important;
+    /* Halluu adii qulqulluu */
+}
 
+/* Yeroo PC irratti dalga hiriiran */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #020617;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/* --- MOBILE FIX (Silkii Irratti) --- */
 @media (max-width: 768px) {
-
-    /* Background bifa qulqulluun bareechuuf */
-    nav,
-    header {
-        display: flex !important;
+    .navbar {
         flex-direction: column !important;
         align-items: flex-start !important;
-        padding: 20px 15px !important;
-        background: #020617 !important;
-        /* Gurraacha qulqulluu */
-        border-bottom: 1px solid rgba(255, 157, 0, 0.2) !important;
+        padding: 15px !important;
     }
 
-    /* Logo - BEEBBOO BURGER */
-    .logo h1 {
-        font-size: 1.5rem !important;
-        color: #ff9d00 !important;
-        /* Halluu Orange/Yellow */
-        margin-bottom: 15px !important;
-        text-transform: uppercase !important;
-    }
-
-    /* Linkiiwwan (Home, Menu, About...) */
-    .nav-links,
-    .menu-links,
-    ul {
-        display: flex !important;
+    .nav-links {
         flex-wrap: wrap !important;
         gap: 10px !important;
-        padding: 0 !important;
-        list-style: none !important;
+        margin-top: 10px !important;
     }
 
-    .nav-links a,
-    li a {
-        color: #ffffff !important;
-        /* Halluu adii qulqulluu */
-        text-decoration: none !important;
-        /* Jala-sarara (Blue) sana balleessuuf */
-        font-size: 0.8rem !important;
-        padding: 6px 12px !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        /* Bifa card-ii xixiqqoo uumuuf */
+    .nav-links a {
+        background: rgba(255, 255, 255, 0.1) !important;
+        padding: 5px 10px !important;
         border-radius: 5px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Yeroo cuqaasamu (Hover effect) */
-    .nav-links a:hover,
-    li a:hover {
-        background: #ff9d00 !important;
-        color: #000 !important;
-    }
-
-    /* Cart Button addatti bareechuuf */
-    .cart-btn {
-        margin-top: 15px !important;
-        background: #ff9d00 !important;
-        color: #000 !important;
-        padding: 8px 16px !important;
-        border-radius: 8px !important;
-        font-weight: bold !important;
+        font-size: 0.8rem !important;
     }
 }
