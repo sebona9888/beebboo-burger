@@ -83,4 +83,53 @@
   text-decoration: none;
   font-weight: 900;
   border-radius: 8px;
+}/* --- ONLY MOBILE READABILITY FIX --- */
+@media (max-width: 768px) {
+  .payment-page-onyx {
+    padding: 80px 20px;
+    /* Iskiiriinii dhiphaaf padding xiqqeessineerra */
+  }
+
+  .header-onyx h1 {
+    font-size: 2.5rem;
+    /* Title-ni akka hin cinne hamma isaa hir'isneerra */
+  }
+
+  .onyx-grid {
+    grid-template-columns: 1fr;
+    /* Kardiwwan gadi akka hiriiran godha */
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .onyx-inner {
+    padding: 30px 20px;
+    /* Keessoo kardii dhiphisneerra */
+    transform: translate(-4px, -4px);
+    /* 3D effect-sa silkii irratti xiqqeessineerra */
+  }
+
+  .onyx-card:hover .onyx-inner {
+    transform: translate(-6px, -6px);
+  }
+
+  .onyx-number {
+    font-size: 1.2rem;
+    /* Lakkoofsi kardiirratti akka sirriitti dubbifamu */
+  }
+
+  .onyx-verification {
+    margin-top: 40px;
+  }
+
+  .onyx-verify-inner {
+    padding: 30px 15px;
+  }
+
+  .onyx-btn {
+    width: 100%;
+    /* Batoonni silkii irratti guutuu akka ta'an */
+    margin: 10px 0;
+    box-sizing: border-box;
+  }
 }
