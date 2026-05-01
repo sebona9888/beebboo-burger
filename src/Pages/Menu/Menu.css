@@ -143,64 +143,47 @@
         padding: 12px;
         /* Mobaayila irratti tuquuf akka tolu */
     }
-}/* --- BURGER CARD ANIMATION & EXPANSION --- */
-
-.burger-item {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+}.burger-item {
     cursor: pointer;
-    overflow: hidden;
-    height: auto;
-    max-height: 140px;
-    /* Jalqaba irratti dhiphoo dha */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Koodii kanaan duraa irratti kana dabaladhu */
 }
 
-/* Yeroo Mouse irra kaayan ykn Silkii irratti tuqan */
-.burger-item:hover,
 .burger-item:active {
-    max-height: 500px;
-    /* Gadi baballatee ibsa isaa agarsiisa */
-    background: #26334d;
-    border-color: #f97316;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-.burger-info {
+    transform: scale(0.95);
+    /* Yeroo tuqan xiqqoo gadi bu'a (Effect) */
+}.filter-controls {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-/* Ibsa Burger-ichaa (Description) */
-.burger-description {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    opacity: 0;
-    /* Jalqaba irratti ni dhokata */
-    transform: translateY(10px);
-    transition: all 0.3s ease;
+.search-input {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #1e293b;
+    color: white;
+    width: 100%;
+    max-width: 400px;
 }
 
-/* Yeroo kardiin sun banamu ibsi sun akka mul'atu */
-.burger-item:hover .burger-description,
-.burger-item:active .burger-description {
-    opacity: 1;
-    transform: translateY(0);
+.category-tabs {
+    display: flex;
+    gap: 10px;
 }
 
-.burger-price {
-    font-weight: 900;
-    color: #f97316;
-    font-size: 1.2rem;
+.tab-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: transparent;
+    color: white;
+    border: 1px solid #f97316;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: #f97316;
 }
