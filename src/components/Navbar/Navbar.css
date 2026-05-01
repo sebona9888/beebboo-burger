@@ -1,90 +1,100 @@
-/* --- NAVBAR PREMIUM & COMPACT UI --- */
+/* --- NAVBAR PREMIUM COMPACT UI --- */
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 8%;
-    background-color: rgba(2, 6, 23, 0.9);
+    padding: 1.2rem 8%;
+    background-color: rgba(2, 6, 23, 0.95);
     backdrop-filter: blur(12px);
     position: fixed;
+    /* Gubbaa irratti hidhameera */
     top: 0;
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-.navbar a {
-    text-decoration: none !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.navbar a:hover {
-    color: #FFD700 !important;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-    align-items: center;
+    box-sizing: border-box;
 }
 
 .navbar-logo {
     font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: #ffffff !important;
     text-transform: uppercase;
     font-family: 'Outfit', sans-serif;
+    text-decoration: none;
 }
 
-/* --- MOBILE COMPACT OPTIMIZATION (Fix for image_3d9974.png) --- */
+.navbar-logo span {
+    color: #f97316;
+    /* Halluu Orange Beebboo */
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Hover Effects */
+.nav-links a:hover {
+    color: #FFD700 !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- MOBILE RESPONSIVE FIX (image_3d2f83.png) --- */
 @media (max-width: 768px) {
     .navbar {
-        padding: 10px 5% !important;
+        padding: 15px 5% !important;
+        position: relative;
+        /* Hero section akka hin uffisne (Fix for overlap) */
         flex-direction: column !important;
-        /* Logo fi Links gadi hiriiru */
-        background-color: #020617 !important;
+        gap: 12px;
+        width: 100%;
     }
 
     .navbar-logo {
-        font-size: 1.1rem;
-        /* Logo xiqqeessineerra */
+        font-size: 1.2rem;
     }
 
     .nav-links {
-        display: flex;
         flex-wrap: wrap !important;
+        /* Kardiwwan sarara tokkorra akka ta'an */
         justify-content: center;
-        gap: 6px !important;
-        /* Gidduu isaanii baay'ee dhiphifneerra */
-        margin-top: 8px !important;
+        gap: 8px !important;
         width: 100%;
     }
 
     .nav-links a {
-        background: rgba(255, 255, 255, 0.06) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         padding: 6px 12px !important;
-        /* Kardiwwan dhiphoo gooneerra */
-        border-radius: 8px !important;
-        font-size: 0.7rem !important;
-        /* Qubee xiqqeessineerra */
-        font-weight: 700;
-        text-transform: uppercase;
+        font-size: 0.75rem !important;
+        border-radius: 10px !important;
         white-space: nowrap;
     }
 
-    .nav-links a:active {
-        background: #FF9F1C !important;
-        /* Halluu Beebboo Burger */
-        color: #000 !important;
+    /* Cart Status Compact Style */
+    .cart-status {
+        margin-top: 5px;
+        font-weight: 800;
+        color: #FFD700;
+        font-size: 0.85rem;
     }
 }
