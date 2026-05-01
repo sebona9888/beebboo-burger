@@ -1,3 +1,5 @@
+/* --- ABOUT.CSS: BEEBBOO BURGER PREMIUM EDITION --- */
+
 :root {
     --primary: #ff8a00;
     --brand-red: #e31837;
@@ -324,7 +326,7 @@
     color: var(--brand-red);
 }
 
-/* --- CORE VALUES & BOTTOM --- */
+/* --- CORE VALUES --- */
 .core-values {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -368,7 +370,7 @@
     opacity: 0.05;
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE FIX --- */
 @media (max-width: 1100px) {
 
     .hero-grid,
@@ -396,5 +398,41 @@
     .floating-delivery {
         left: 50%;
         transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 100px 5% 40px;
+    }
+
+    .bold-title {
+        font-size: 2.8rem;
+    }
+
+    .stats-grid-premium {
+        grid-template-columns: repeat(2, 1fr);
+        /* Mobaayila irratti bakka 2tti qoodama */
+    }
+
+    .vision-mission-cards {
+        grid-template-columns: 1fr;
+        /* Gadi hiriiru */
+    }
+
+    .michelin-card {
+        padding: 25px;
+    }
+
+    .newsletter-card {
+        padding: 40px 20px;
+    }
+
+    .s-card {
+        padding: 30px;
+    }
+
+    .test-text {
+        font-size: 1.1rem;
     }
 }
