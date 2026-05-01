@@ -2,20 +2,75 @@
 
 .cart-page {
     padding: 100px 10% 60px;
-    /* Padding ol-kaasneerra */
-    min-height: 80vh;
-    background-color: #f8f9fa;
-    /* Background xiqqoo gara grey tti jijjiirre */
+    min-height: 100vh;
+    background-color: #fcfcfc;
+    /* Halluu qulqulluu fi professional */
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.cart-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    /* Gap bal'isneerra akka wal hin dhiphisne */
-    margin-top: 40px;
-    align-items: start;
+/* Kutaalee Kardiidhaan gargar baasuuf (Item cards) */
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f1f1;
+    justify-content: space-between;
+}
+
+.cart-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* --- QUANTITY CONTROLS (Kutaaleen suuraa keessatti hin mul'anne sunneen) --- */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    /* Background itti daballee akka mul'atu goone */
+    padding: 8px 15px;
+    border-radius: 12px;
+    gap: 15px;
+    border: 1px solid #eee;
+}
+
+.qty-btn {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1a1a1a;
+    transition: 0.3s;
+}
+
+.qty-btn:hover {
+    background: #ff9f1c;
+    color: white;
+    border-color: #ff9f1c;
+}
+
+.quantity-value {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1.1rem;
 }
 
 /* --- SUMMARY SECTION --- */
@@ -23,81 +78,72 @@
     background: #ffffff;
     padding: 35px;
     border-radius: 24px;
-    /* Curve isaa bal'isneerra */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-    /* Shadow laafaa (soft shadow) */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
     height: fit-content;
-    border: 1px solid #eee;
+    border: 1px solid #f0f0f0;
     position: sticky;
-    /* Gadi yoo bu'an nu wajjin deema */
     top: 120px;
 }
 
-.cart-summary h3 {
-    font-size: 1.5rem;
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.total-row {
+    border-top: 2px dashed #eee;
+    margin-top: 20px;
+    padding-top: 20px;
     font-weight: 800;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
     color: #1a1a1a;
 }
 
-/* --- CHECKOUT BUTTON --- */
+/* --- CHECKOUT BUTTON (BAAY'EE BAREEDAA TA'E) --- */
 .checkout-btn {
     background: linear-gradient(135deg, #ff9f1c, #ff8a00);
-    /* Gradient itti dabalteera */
     color: white;
     border: none;
-    padding: 18px 25px;
-    border-radius: 16px;
+    padding: 20px;
+    border-radius: 18px;
     font-weight: 800;
     font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     cursor: pointer;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 25px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 20px rgba(255, 159, 28, 0.2);
+    box-shadow: 0 12px 25px rgba(255, 159, 28, 0.3);
 }
 
 .checkout-btn:hover {
     transform: translateY(-5px);
-    /* Ol-ka'iinsa hover irratti */
-    box-shadow: 0 15px 30px rgba(255, 159, 28, 0.3);
-    background: linear-gradient(135deg, #ff8a00, #e68a00);
+    box-shadow: 0 18px 35px rgba(255, 159, 28, 0.4);
+    filter: brightness(1.1);
 }
 
-.checkout-btn:active {
-    transform: scale(0.98);
-}
-
-/* --- MOBILE OPTIMIZATION (READABILITY) --- */
-@media (max-width: 1100px) {
-    .cart-page {
-        padding: 80px 5%;
-    }
-
-    .cart-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
-
+/* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 768px) {
     .cart-page {
-        padding: 60px 20px;
+        padding: 80px 20px 40px;
     }
 
-    .cart-summary {
-        padding: 25px 20px;
-        border-radius: 20px;
+    .cart-item {
+        flex-direction: row;
+        padding: 15px;
+        gap: 10px;
     }
 
-    .cart-summary h3 {
-        font-size: 1.3rem;
+    .cart-item img {
+        width: 70px;
+        height: 70px;
     }
 
-    .checkout-btn {
-        padding: 16px;
-        font-size: 0.9rem;
+    .quantity-controls {
+        padding: 5px 10px;
     }
 }
