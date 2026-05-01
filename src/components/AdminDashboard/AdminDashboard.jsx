@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './AdminDashboard.css';
 
@@ -6,6 +6,7 @@ const AdminDashboard = () => {
     const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [burgers, setBurgers] = useState([]);
+    const [isLoading, setIsLoading] = useState(false); // Loading state
 
     const [newBurger, setNewBurger] = useState({
         name: '',
@@ -15,66 +16,66 @@ const AdminDashboard = () => {
         description: ''
     });
 
-    const fetchBurgers = async () => {
+    // --- 1. RAGAALEE FIDUU (GET) ---
+    // useCallback fayyadamuun performance fooyyessa
+    const fetchBurgers = useCallback(async () => {
+        setIsLoading(true);
         try {
-            const res = await axios.get('https://beebboo-backend.onrender.com/menu/menu');
-            setBurgers(res.data); // Asumatti state update gochuun gaariidha
-            return res.data;
+            const res = await axios.get('https://beebboo-backend.onrender.com/api/menu');
+            setBurgers(res.data);
         } catch (error) {
             console.error("Data fiduun hin danda'amne:", error);
-            return [];
+        } finally {
+            setIsLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
         if (isAuthenticated) {
-            const loadBurgers = async () => {
-                await fetchBurgers();
-            };
-            loadBurgers();
+            fetchBurgers();
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, fetchBurgers]);
 
-    // --- FUNCTION BALLEESSUUTIIF (Dabalame) ---
+    // --- 2. BURGER BALLEESSUU (DELETE) ---
     const deleteBurger = async (id) => {
         if (window.confirm("Dhuguma burger kana balleessuu barbaadduu?")) {
             try {
-                const response = await fetch(`https://beebboo-backend.onrender.com/menu/menu/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'admin_secret': 'admin123'
-                    }
+                const response = await axios.delete(`https://beebboo-backend.onrender.com/api/menu/${id}`, {
+                    headers: { 'admin_secret': 'admin123' }
                 });
 
-                if (response.ok) {
+                if (response.status === 200) {
                     alert("Burger milkiin haqameera!");
-                    fetchBurgers(); // Reload osoo hin taane data haaraa fiduu
-                } else {
-                    alert("Balleessuun hin danda'amne.");
+                    fetchBurgers();
                 }
-            } catch (error) {
-                console.error("Error:", error);
+            } catch {
+                alert("Balleessuun hin danda'amne!");
             }
         }
     };
 
+    // --- 3. BURGER HAARAA DABALUU (POST) ---
     const handleAddBurger = async (e) => {
         e.preventDefault();
-        try {
-            const dataToSend = {
-                ...newBurger,
-                countInStock: 20
-            };
 
-            await axios.post('https://beebboo-backend.onrender.com/menu/menu', dataToSend, {
+        // Gatii check gochuu (Gatiin 0 gadi ta'uu hin qabu)
+        if (newBurger.price <= 0) {
+            return alert("Gatiin 0 gadi ta'uu hin qabu!");
+        }
+
+        try {
+            const dataToSend = { ...newBurger, countInStock: 20 };
+
+            await axios.post('https://beebboo-backend.onrender.com/api/menu', dataToSend, {
                 headers: { 'admin_secret': 'admin123' }
             });
 
             alert("Burger haaraan milkiidhaan dabalameera!");
+            // Form qulqulleessuu
             setNewBurger({ name: '', price: '', image: '', category: 'Beef', description: '' });
             fetchBurgers();
         } catch {
-            alert("Dabalachuun hin danda'amne! Backend mirkaneeffadhu.");
+            alert("Dabalachuun hin danda'amne!");
         }
     };
 
@@ -105,7 +106,6 @@ const AdminDashboard = () => {
         );
     }
 
-    // Admin Dashboard View
     return (
         <div className="admin-container">
             <h2 className="admin-title">Beebboo Admin Panel</h2>
@@ -125,7 +125,6 @@ const AdminDashboard = () => {
                         onChange={(e) => setNewBurger({ ...newBurger, price: e.target.value })}
                         required
                     />
-
                     <select
                         value={newBurger.category}
                         onChange={(e) => setNewBurger({ ...newBurger, category: e.target.value })}
@@ -135,20 +134,17 @@ const AdminDashboard = () => {
                         <option value="Veggie">Veggie Burger</option>
                         <option value="Special">Special Beebboo</option>
                     </select>
-
                     <input
                         type="text" placeholder="URL Suuraa..."
                         value={newBurger.image}
                         onChange={(e) => setNewBurger({ ...newBurger, image: e.target.value })}
                         required
                     />
-
                     <textarea
                         placeholder="Ibsa dabalataa (Description)..."
                         value={newBurger.description}
                         onChange={(e) => setNewBurger({ ...newBurger, description: e.target.value })}
                     />
-
                     <button type="submit" className="btn-add">Dabalau +</button>
                 </div>
             </form>
@@ -156,9 +152,11 @@ const AdminDashboard = () => {
             <div className="burgers-section">
                 <h3>Burgers List</h3>
                 <div className="burger-list">
-                    {burgers.length > 0 ? (
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : burgers.length > 0 ? (
                         burgers.map((burger) => (
-                            <div key={burger._id || burger.id} className="burger-item">
+                            <div key={burger._id} className="burger-item">
                                 <div className="burger-info">
                                     <strong>{burger.name}</strong> - {burger.price} ETB
                                     <span className="category-tag">{burger.category}</span>
@@ -173,7 +171,7 @@ const AdminDashboard = () => {
                             </div>
                         ))
                     ) : (
-                        <p>Hancaa jira... Burger'n hin jiru.</p>
+                        <p>Burger'n hin jiru.</p>
                     )}
                 </div>
             </div>
