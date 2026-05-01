@@ -23,6 +23,31 @@
     background-attachment: fixed;
 }
 
+/* ===== TITLE & SUBTITLE ===== */
+.menu-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.menu-title span {
+    background: linear-gradient(90deg, #f97316, #facc15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.menu-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 10px auto;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+}
+
 /* ===== SEARCH & FILTER UI ===== */
 .filter-controls {
     display: flex;
@@ -46,7 +71,6 @@
 
 .search-input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
 }
 
 .category-tabs {
@@ -57,17 +81,16 @@
 }
 
 .tab-btn {
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent;
     color: white;
     border: 1px solid var(--primary);
     cursor: pointer;
     transition: 0.3s;
 }
 
-.tab-btn.active,
-.tab-btn:hover {
+.tab-btn.active {
     background: var(--primary);
 }
 
@@ -92,14 +115,13 @@
 
 .menu-card:hover {
     transform: translateY(-8px);
-    border-color: var(--primary);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .menu-img-box {
     width: 100%;
-    height: 200px;
-    overflow: hidden;
+    height: 180px;
 }
 
 .menu-img-box img {
@@ -112,47 +134,74 @@
     padding: 20px;
 }
 
-/* ===== MODAL (RAKKOO ZOOMII KANAAN SIRREEI) ===== */
+.price {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ===== VIEW BUTTON (SOLID GRAY & PROFESSIONAL) ===== */
+.view-btn {
+    margin-top: 15px;
+    background: #334155;
+    /* Solid Gray */
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+    background: #475569;
+    transform: translateY(-2px);
+}
+
+/* ===== MODAL FIXED (NO ZOOM) ===== */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    padding: 20px;
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
     background: #0f172a;
-    width: 100%;
+    width: 90%;
     max-width: 450px;
-    /* HAMMA SIRRII */
     border-radius: 20px;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: popUp 0.3s ease-out;
 }
 
 .modal-img-container {
     width: 100%;
-    height: 250px;
+    height: 230px;
 }
 
 .modal-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Suuraan akka hin baballanne godha */
 }
 
 .modal-details {
-    padding: 20px;
-    color: white;
+    padding: 25px;
 }
 
 .close-modal {
@@ -162,33 +211,50 @@
     background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    font-size: 25px;
+    font-size: 24px;
     cursor: pointer;
     width: 35px;
     height: 35px;
     border-radius: 50%;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .add-btn-large {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 12px;
+    padding: 14px;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 1rem;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== ANIMATIONS & RESPONSIVE ===== */
+@keyframes popUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 @media (max-width: 768px) {
     .menu-grid {
         grid-template-columns: 1fr;
+        padding: 0 10px;
     }
 
-    .modal-content {
-        max-width: 95%;
+    .menu-title {
+        font-size: 2.2rem;
     }
 }
