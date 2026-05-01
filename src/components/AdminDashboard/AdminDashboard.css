@@ -170,3 +170,61 @@ body {
 .btn-delete:hover {
     background: #dc2626;
 }
+
+/* --- ONLY MOBILE READABILITY FIX --- */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 15px;
+    }
+
+    .admin-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .login-card {
+        width: 85%;
+        padding: 25px;
+    }
+
+    .add-burger-form {
+        padding: 15px;
+    }
+
+    .burger-item {
+        flex-direction: column;
+        /* Gadi hiriiruun dhiphina hir'isa */
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .burger-info {
+        width: 100%;
+    }
+
+    .btn-delete {
+        width: 100%;
+        /* Qubaaf akka mijatuuf */
+        padding: 12px;
+        text-align: center;
+    }
+
+    .btn-add {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-title {
+        font-size: 18px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px;
+        /* Dubbisuuf akka mijaatu */
+    }
+}

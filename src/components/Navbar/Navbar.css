@@ -1,43 +1,100 @@
-/* Linkiiwwan hunda qulqulleessuuf */
-.navbar a {
-    text-decoration: none !important;
-    color: white !important;
-    /* Halluu adii qulqulluu */
-}
+/* --- NAVBAR PREMIUM UI --- */
 
-/* Yeroo PC irratti dalga hiriiran */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #020617;
+    padding: 1.2rem 8%;
+    /* Padding bal'isneerra */
+    background-color: rgba(2, 6, 23, 0.9);
+    /* Xiqqoo akka fuulleetti (Glassy) */
+    backdrop-filter: blur(12px);
+    /* Background akka calaqqisu gochuuf */
+    position: fixed;
+    /* Gubaatti akka hidhamu */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* Sarara qalloo babbaxxee */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.navbar a {
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    /* Adii laafaa */
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Yeroo Mouse irra kaayan (Hover Effects) */
+.navbar a:hover {
+    color: #FFD700 !important;
+    /* Halluu Warqee (Gold) */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 35px;
+    /* Gidduu isaanii bal'isneerra */
     list-style: none;
+    align-items: center;
 }
 
-/* --- MOBILE FIX (Silkii Irratti) --- */
+/* --- LOGO STYLE --- */
+.navbar-logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* --- MOBILE UI OPTIMIZATION (Silkii Irratti) --- */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        padding: 15px !important;
+        padding: 15px 5% !important;
+        background-color: #020617 !important;
+        /* Mobaayila irratti qulqulluu gooneera */
+        flex-direction: row !important;
+        /* Logo fi Menu wal-bira akka hiriiran */
     }
 
     .nav-links {
+        display: flex;
         flex-wrap: wrap !important;
+        justify-content: center;
         gap: 10px !important;
-        margin-top: 10px !important;
+        margin-top: 15px !important;
+        width: 100%;
+        padding-bottom: 10px;
     }
 
     .nav-links a {
-        background: rgba(255, 255, 255, 0.1) !important;
-        padding: 5px 10px !important;
-        border-radius: 5px !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        padding: 10px 18px !important;
+        /* Qubaan tuquuf bal'isneerra */
+        border-radius: 14px !important;
         font-size: 0.8rem !important;
+        font-weight: 800;
+        text-transform: uppercase;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Silkii irratti yeroo tuqan akka calaqqisu (Touch State) */
+    .nav-links a:active {
+        background: #FFD700 !important;
+        color: #020617 !important;
+        transform: scale(0.95);
     }
 }
