@@ -8,7 +8,6 @@ const Menu = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Burger filatame modal irratti agarsiisuuf
     const [selectedBurger, setSelectedBurger] = useState(null);
 
     const cart = useContext(CartContext);
@@ -18,8 +17,8 @@ const Menu = () => {
         const fetchBurgers = async () => {
             try {
                 setLoading(true);
-                // ASIRRATTI: Karaa (Route) backend keetii isa sirrii '/api/burgers' fayyadamneerra
-                const response = await axios.get('https://beebboo-backend.onrender.com/api/burgers');
+                // SIRREEFFAMA: '/api/burgers' gara '/api/menu' tti jijjiirameera (FIX 404)
+                const response = await axios.get('https://beebboo-backend.onrender.com/api/menu');
 
                 if (response.data) {
                     setBurgers(response.data);
