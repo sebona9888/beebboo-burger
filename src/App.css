@@ -67,4 +67,76 @@
         font-size: 1.5rem !important;
         text-align: center !important;
     }
+}/* ======================================================
+   MOBILE NAVBAR LEFT ALIGNMENT FIX
+   ====================================================== */
+
+@media (max-width: 768px) {
+
+    /* Navbar guutummaatti bitaatti qabuuf */
+    nav,
+    header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        /* Gara bitaatti qaba */
+        padding: 15px !important;
+        overflow-x: hidden !important;
+        /* Iskiiriinii akka hin babal'isne */
+    }
+
+    /* Logo bitaatti sirreessuuf */
+    .logo {
+        width: 100% !important;
+        text-align: left !important;
+        margin-bottom: 10px !important;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem !important;
+    }
+
+    /* Linkiiwwan hunda sarara tokkoon bitaatti hiriirsuu */
+    .nav-links,
+    .menu-links,
+    ul {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        /* Linkiiwwan baay'ee yoo ta'an gadi hiriiru */
+        justify-content: flex-start !important;
+        /* Bitaa irraa eegala */
+        gap: 12px !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .nav-links a,
+    li a {
+        font-size: 0.75rem !important;
+        /* Barreeffamni baay'ee akka hin gurguddanne */
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        color: white !important;
+        white-space: nowrap !important;
+    }
+
+    /* Cart Button bitaatti sirreessuuf */
+    .cart-btn {
+        margin-top: 10px !important;
+        align-self: flex-start !important;
+    }
+
+    /* Hero Section (Barreeffama NYAATA QULQULLUU...) */
+    .hero-content {
+        text-align: left !important;
+        /* Kunis bitaatti akka galu */
+        padding: 0 !important;
+    }
+
+    .hero-title {
+        font-size: 1.8rem !important;
+        text-align: left !important;
+    }
 }
