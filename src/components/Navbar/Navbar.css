@@ -1,51 +1,69 @@
 /* ======================================================
-    NAVBAR LINK FIX (CLEAN & ALIGNED)
+    MOBILE NAVBAR DESIGN UPGRADE
    ====================================================== */
 
 @media (max-width: 768px) {
 
-    /* Header/Nav guutummaatti bitaatti butuuf */
+    /* Background bifa qulqulluun bareechuuf */
     nav,
     header {
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        padding: 10px 15px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
+        padding: 20px 15px !important;
+        background: #020617 !important;
+        /* Gurraacha qulqulluu */
+        border-bottom: 1px solid rgba(255, 157, 0, 0.2) !important;
     }
 
-    /* Linkiiwwan akka wal-irra hin lixne */
+    /* Logo - BEEBBOO BURGER */
+    .logo h1 {
+        font-size: 1.5rem !important;
+        color: #ff9d00 !important;
+        /* Halluu Orange/Yellow */
+        margin-bottom: 15px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Linkiiwwan (Home, Menu, About...) */
     .nav-links,
     .menu-links,
     ul {
         display: flex !important;
         flex-wrap: wrap !important;
-        justify-content: flex-start !important;
-        gap: 8px 12px !important;
-        /* Gidduu isaanii fageenya madaalawaa */
-        padding: 5px 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
+        gap: 10px !important;
+        padding: 0 !important;
         list-style: none !important;
     }
 
     .nav-links a,
     li a {
-        font-size: 0.75rem !important;
+        color: #ffffff !important;
+        /* Halluu adii qulqulluu */
         text-decoration: none !important;
-        white-space: nowrap !important;
-        /* Barreeffamni bakka lamatti akka hin hiramne */
-        display: inline-block !important;
-        padding: 5px 0 !important;
-        color: white !important;
+        /* Jala-sarara (Blue) sana balleessuuf */
+        font-size: 0.8rem !important;
+        padding: 6px 12px !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        /* Bifa card-ii xixiqqoo uumuuf */
+        border-radius: 5px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* Barreeffama 'NYAATA QULQULLUU' sirreessuuf */
-    .hero-title,
-    h1 {
-        font-size: 1.6rem !important;
+    /* Yeroo cuqaasamu (Hover effect) */
+    .nav-links a:hover,
+    li a:hover {
+        background: #ff9d00 !important;
+        color: #000 !important;
+    }
+
+    /* Cart Button addatti bareechuuf */
+    .cart-btn {
         margin-top: 15px !important;
-        text-align: left !important;
+        background: #ff9d00 !important;
+        color: #000 !important;
+        padding: 8px 16px !important;
+        border-radius: 8px !important;
+        font-weight: bold !important;
     }
 }
