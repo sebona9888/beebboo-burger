@@ -110,7 +110,7 @@ const About = () => {
                 <div className="team-grid">
                     <div className="team-card">
                         <div className="chef-img-wrapper">
-                            <img src="https://fkiqubgtnczwpemqvjuf.supabase.co/storage/v1/object/public/beebboo/burger.jpg
+                            <img src="https://fkiqubgtnczwpemqvjuf.supabase.co/storage/v1/object/public/beebboo/beebboo.jpg
                         " />
                         </div>
                         <h4>beebboo beyana</h4>

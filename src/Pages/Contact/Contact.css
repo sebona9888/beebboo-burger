@@ -1,92 +1,329 @@
-/* --- CONTACT.CSS: BEEBBOO GOURMET RESPONSIVE --- */
+/* BEEBBOO GOURMET - 3D RED SLAP MASTER STYLES */
 
-/* Koodii kanaan dura jiru hunda akkuma jirutti dhiisi... */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
 
-/* --- RESPONSIVE FIX FOR MOBILE --- */
+:root {
+  --c-oxblood: #630d0d;
+  --c-oxblood-dark: #4a0808;
+  --c-gold: #c5a059;
+  --c-cream: #fdfaf6;
+  --c-white: #ffffff;
+  --c-dark: #121212;
+  --slap-shadow: 30px 30px 0px var(--c-oxblood);
+  --plate-3d-shadow: 10px 10px 0px var(--c-oxblood);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-page {
+  background-color: var(--c-cream);
+  min-height: 100vh;
+  padding: 140px 8% 100px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.contact-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* --- 1. HEADER & TYPOGRAPHY --- */
+.contact-header {
+  margin-bottom: 80px;
+}
+
+.brand-label {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 8px 15px;
+  overflow: hidden;
+}
+
+.label-inner {
+  position: relative;
+  z-index: 2;
+  color: var(--c-oxblood);
+  font-weight: 950;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 7px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  animation: textPulse 3s infinite ease-in-out;
+}
+
+.brand-label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--c-oxblood);
+  opacity: 0.08;
+  animation: slideSlap 1.5s forwards cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.brand-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: var(--c-oxblood);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  animation: barGrow 1s 0.5s forwards ease-out;
+}
+
+@keyframes textPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 0.8;
+  }
+}
+
+@keyframes slideSlap {
+  to {
+    left: 0;
+  }
+}
+
+@keyframes barGrow {
+  to {
+    width: 100%;
+  }
+}
+
+.golden-lead {
+  color: var(--c-gold);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.4;
+  max-width: 750px;
+  margin-bottom: 25px;
+  padding-left: 20px;
+  border-left: 6px solid var(--c-oxblood);
+  font-style: italic;
+}
+
+.power-text {
+  max-width: 650px;
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* --- 2. MAIN GRID LAYOUT --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+/* --- 3. THE RED SLAP IMAGE --- */
+.image-slap-frame {
+  position: relative;
+  border-radius: 25px;
+  height: 500px;
+  overflow: hidden;
+  box-shadow: var(--slap-shadow);
+  margin-bottom: 60px;
+  border: 4px solid var(--c-dark);
+  background: var(--c-dark);
+}
+
+.image-slap-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.live-status {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.7rem;
+  color: #2ecc71;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 4. 3D CONTACT PLATES --- */
+.contact-3d-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.plate-3d {
+  background: var(--c-dark);
+  border-radius: 20px;
+  padding-bottom: 10px;
+}
+
+.plate-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  transform: translateY(-10px);
+  border: 3px solid var(--c-dark);
+  transition: transform 0.2s ease;
+}
+
+.plate-3d:hover .plate-content {
+  transform: translateY(-5px);
+}
+
+.plate-content small {
+  color: var(--c-oxblood);
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 0.7rem;
+}
+
+.plate-content h3,
+.phone-3d {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--c-dark);
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+/* --- 5. THE 3D FORM --- */
+.form-wrapper {
+  background: white;
+  padding: 60px;
+  border-radius: 40px;
+  border: 3px solid var(--c-dark);
+  box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+  margin-bottom: 45px;
+}
+
+.form-header h3 {
+  font-family: 'Outfit';
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--c-oxblood);
+}
+
+.input-group {
+  margin-bottom: 35px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--c-oxblood);
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 22px;
+  border-radius: 15px;
+  border: 3px solid var(--c-dark);
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 1.1rem;
+  color: var(--c-dark);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  transform: translate(-3px, -3px);
+  box-shadow: 12px 12px 0px var(--c-oxblood);
+  border-color: var(--c-oxblood);
+}
+
+/* --- 6. THE 3D ACTION BUTTON --- */
+.restaurant-btn {
+  width: 100%;
+  padding: 25px;
+  background: var(--c-oxblood);
+  color: white;
+  border: 3px solid var(--c-dark);
+  border-radius: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 10px 0px var(--c-oxblood-dark);
+  transition: all 0.1s ease;
+}
+
+.restaurant-btn:active {
+  transform: translateY(6px);
+  box-shadow: 0px 4px 0px var(--c-oxblood-dark);
+}
+
+/* --- ONLY MOBILE READABILITY FIX --- */
 @media (max-width: 1100px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .contact-header {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-
-  .golden-lead {
-    margin: 0 auto 25px;
-    border-left: none;
-    border-top: 6px solid var(--c-oxblood);
-    /* Sarara gubbaatti jijjiirre */
-    padding-left: 0;
-    padding-top: 20px;
-  }
-
-  .power-text {
-    margin: 0 auto;
+    gap: 50px;
   }
 }
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 100px 5% 60px;
-  }
-
-  /* Typography */
-  .bold-title {
-    font-size: 2.5rem !important;
-    text-align: center;
+    padding: 80px 5% 40px;
   }
 
   .golden-lead {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    padding-left: 15px;
+    border-left-width: 4px;
   }
 
-  /* 3D Slap Frame - Mobaayila irratti ol-ka'iinsa isaa hir'isuuf */
   .image-slap-frame {
-    height: 350px;
+    height: 300px;
     box-shadow: 15px 15px 0px var(--c-oxblood);
-    /* Shadow xiqqeessineera */
   }
 
-  /* Form Wrapper */
   .form-wrapper {
     padding: 30px 20px;
-    border-radius: 25px;
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.05);
   }
 
-  .form-header h3 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  /* Input Fields */
   .input-group input,
   .input-group textarea {
-    padding: 18px;
+    padding: 15px;
     font-size: 1rem;
   }
 
-  /* Restaurant Button */
   .restaurant-btn {
-    padding: 20px;
-    font-size: 0.9rem;
+    padding: 18px;
     letter-spacing: 2px;
-  }
-
-  /* 3D Plates */
-  .plate-content h3,
-  .phone-3d {
-    font-size: 1.3rem;
-  }
-
-  /* Status Badge */
-  .live-status {
-    top: 15px;
-    left: 15px;
-    padding: 5px 15px;
-    font-size: 0.6rem;
+    font-size: 0.85rem;
   }
 }
