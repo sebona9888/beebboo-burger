@@ -189,4 +189,153 @@ body {
     .burger-list {
         grid-template-columns: 1fr;
     }
+}/* --- ADMIN DASHBOARD ONYX DESIGN --- */
+
+.admin-container-onyx {
+    display: flex;
+    min-height: 100vh;
+    background-color: #000;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* --- SIDEBAR --- */
+.admin-sidebar-onyx {
+    width: 260px;
+    background: #0a0a0a;
+    border-right: 1px solid #1c1c1c;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #FFD700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    background: #1c1c1c;
+    color: #FFD700;
+    border-left: 4px solid #FFD700;
+}
+
+/* --- MAIN CONTENT --- */
+.admin-main-onyx {
+    flex: 1;
+    padding: 40px;
+    background: radial-gradient(circle at top right, #121212, #000);
+}
+
+/* Stats Grid */
+.stats-grid-onyx {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card-onyx {
+    background: #121212;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #1c1c1c;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.stat-card-onyx:hover {
+    border-color: #FFD700;
+    transform: translateY(-5px);
+}
+
+.stat-card-onyx h3 {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.stat-card-onyx .stat-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+/* --- DATA TABLE --- */
+.admin-table-container {
+    background: #0a0a0a;
+    border-radius: 20px;
+    border: 1px solid #1c1c1c;
+    overflow: hidden;
+}
+
+.admin-table-onyx {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table-onyx th {
+    background: #1c1c1c;
+    padding: 20px;
+    text-align: left;
+    color: #FFD700;
+    font-size: 0.9rem;
+}
+
+.admin-table-onyx td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #121212;
+    color: #e2e8f0;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-pending {
+    background: rgba(250, 204, 21, 0.1);
+    color: #facc15;
+}
+
+.status-completed {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .admin-container-onyx {
+        flex-direction: column;
+    }
+
+    .admin-sidebar-onyx {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #1c1c1c;
+    }
 }
