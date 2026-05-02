@@ -9,14 +9,16 @@
     overflow: hidden;
     background-color: #0b0b0f;
 }
-.welcome-title {
-    color: #FFD700;
-    /* Halluu Gold */
+.welc.home-title {
+    color: #ff781f;
+    /* Halluu Orange vibrant suuraa irratti mul'atu sana */
     font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 4px;
     margin-bottom: 10px;
     text-transform: uppercase;
+    /* Akka suuraa sanaa irratti xiqqoo ifu (glow) yoo barbaadde: */
+    text-shadow: 0 0 15px rgba(31, 255, 124, 0.3);
 }
 
 /* Halluu Gray barreeffama gadiitiif */
