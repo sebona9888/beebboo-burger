@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useCart } from '../../context/useCart';
-import axios from 'axios'; // Axios fayyadamuu dandeessa ykn fetch
+import axios from 'axios';
 import './Checkout.css';
 
 const Checkout = () => {
     const { cartItems, totalPrice, clearCart } = useCart();
+
+    // BACKEND_URL: Yoo Vercel irratti fe'ameera ta'e URL Render kee fayyadama, 
+    // yoo kompiitara kee irratti ta'e ammoo localhost fayyadama.
+    const BACKEND_URL = (typeof process !== 'undefined' && process.env.REACT_APP_BACKEND_URL) || 'http://localhost:5000';
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -31,21 +35,21 @@ const Checkout = () => {
 
         setLoading(true);
 
-        // --- RAGAA GARA BACKEND ERGUUF (FormData) ---
         const data = new FormData();
         data.append('fullName', formData.fullName);
         data.append('phone', formData.phone);
         data.append('address', formData.address);
         data.append('paymentMethod', formData.paymentMethod);
         data.append('totalPrice', totalPrice);
-        data.append('items', JSON.stringify(cartItems)); // Array gara String-tti jijjiiri
+        data.append('items', JSON.stringify(cartItems));
 
         if (screenshot) {
             data.append('screenshot', screenshot);
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/orders', data, {
+            // URL asirratti BACKEND_URL fayyadami
+            const response = await axios.post(`${BACKEND_URL}/api/orders`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -54,10 +58,9 @@ const Checkout = () => {
             if (response.status === 201) {
                 alert(`Tole ${formData.fullName}, Ajajni keessan milkiin fudhatameera!`);
                 clearCart();
-                // Gara fuula biraatti redirect gochuu dandeessa
             }
         } catch (error) {
-            console.error("Order Error:", error);
+            console.error("Order Error details:", error.response ? error.response.data : error.message);
             alert("Ajaja erguu irratti rakkoon uumameera. Maaloo irra deebiaa yaalaa.");
         } finally {
             setLoading(false);
@@ -76,7 +79,6 @@ const Checkout = () => {
         <div className="checkout-container fade-in">
             <h1>Checkout</h1>
             <div className="checkout-content">
-
                 <form className="checkout-form" onSubmit={handleSubmit}>
                     <h3>Odeeffannoo Keessan</h3>
                     <div className="input-group">
@@ -102,7 +104,7 @@ const Checkout = () => {
                                 accept="image/*"
                                 onChange={handleFileChange}
                                 style={{ color: 'white' }}
-                                required={formData.paymentMethod !== 'Cash'}
+                                required
                             />
                         </div>
                     )}
@@ -122,9 +124,7 @@ const Checkout = () => {
                             </div>
                         ))}
                     </div>
-
                     {cartItems.length === 0 && <p className="empty-msg">Korboon keessan duwwaa dha.</p>}
-
                     <hr />
                     <div className="summary-total">
                         <strong>Waliigala:</strong>
