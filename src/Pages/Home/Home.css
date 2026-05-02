@@ -9,7 +9,22 @@
     overflow: hidden;
     background-color: #0b0b0f;
 }
+.welcome-title {
+    color: #FFD700;
+    /* Halluu Gold */
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
 
+/* Halluu Gray barreeffama gadiitiif */
+.hero-content p {
+    color: #94a3b8;
+    /* Halluu Gray namatti tolu */
+    line-height: 1.6;
+}
 /* --- BRAND WATERMARK --- */
 .home-container::after {
     content: "BEEBBOO BURGER";

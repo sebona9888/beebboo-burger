@@ -7,15 +7,21 @@ const Home = () => {
         <div className="home-container">
             <section className="hero">
                 <div className="hero-content">
-                    <h4 className="animate-up">WE ARE THE BEST IN TOWN</h4>
-                    <h1 className="animate-up">Nyaata Qulqulluu, <br /><span>Beebboo Burger!</span></h1>
+                    {/* Barreeffama simannaa haaraa dabalame */}
+                    <h4 className="animate-up welcome-title">WELCOME TO BEEBBOO BURGER</h4>
+
+                    <h1 className="animate-up">
+                        Nyaata Qulqulluu, <br />
+                        <span>Beebboo Burger!</span>
+                    </h1>
+
                     <p className="animate-up">
                         Discover the best burger experience in Addis Ababa,
                         crafted with precision and premium ingredients.
                     </p>
+
                     <div className="hero-btns animate-up">
                         <Link to="/menu" className="btn btn-primary">ORDER NOW</Link>
-                        
                         <Link to="/about" className="btn btn-secondary">ABOUT US</Link>
                     </div>
                 </div>
