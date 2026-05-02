@@ -69,4 +69,125 @@
         flex-direction: column;
         text-align: center;
     }
+}/* --- 5. FOOTER ONYX PREMIUM DESIGN --- */
+
+.footer-onyx {
+    background-color: #000;
+    /* Base Black */
+    padding-top: 50px;
+    margin-top: 100px;
+    width: 100%;
+    position: relative;
+}
+
+.footer-inner-onyx {
+    background: #1c1c1c;
+    /* Onyx Gray */
+    border-top: 1px solid #333;
+    padding: 60px 8% 30px;
+    border-radius: 40px 40px 0 0;
+    /* Ol-caasaa bareedaa */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+/* Footer Brand Section */
+.footer-brand h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Footer Links Styling */
+.footer-links h4 {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.footer-links ul li a:hover {
+    color: #FFD700;
+    padding-left: 8px;
+}
+
+/* Newsletter/Social Section */
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFD700;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #333;
+    color: #64748b;
+    font-size: 0.85rem;
+    background: #1c1c1c;
+}
+
+.footer-bottom span {
+    color: #FFD700;
+    font-weight: 700;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .footer-inner-onyx {
+        padding: 40px 20px 20px;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-social .social-icons {
+        justify-content: center;
+    }
 }

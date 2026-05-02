@@ -132,4 +132,89 @@
     margin: 10px 0;
     box-sizing: border-box;
   }
+}/* --- 3. CHECKOUT & PAYMENT ONYX UPDATE --- */
+
+/* 1. Active Card Selection (Yeroo kardiin tokko filatamu) */
+.onyx-card.selected .onyx-inner {
+  border-color: #FFD700 !important;
+  background: #252525;
+  transform: translate(-10px, -10px);
+  box-shadow: 10px 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+/* 2. Copy Feedback (Yeroo lakkoofsa herregaa tuqan) */
+.onyx-number {
+  position: relative;
+  cursor: copy;
+  transition: color 0.2s;
+}
+
+.onyx-number:active {
+  color: #f97316;
+  /* Yeroo tuqamu bifa orange calaqqisa */
+}
+
+/* Tooltip "Copied" jedhu uumuuf */
+.onyx-number::after {
+  content: 'Copied!';
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background: #FFD700;
+  color: #000;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.onyx-number.copied::after {
+  opacity: 1;
+  visibility: visible;
+  top: -40px;
+}
+
+/* 3. Input Refinement (Fuula Verification-f) */
+.onyx-verify-inner input {
+  width: 100%;
+  background: #000;
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 15px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.onyx-verify-inner input:focus {
+  border-color: #FFD700;
+  outline: none;
+}
+
+/* 4. Button Animation (Premium Feel) */
+.onyx-btn {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: none;
+  cursor: pointer;
+}
+
+.onyx-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+  background: #fff;
+  /* Xiqqummoo gara ifaatti jijiirama */
+}
+
+/* 5. Mobile Enhancements (Screenshot_20260502-072021.jpg Fix) */
+@media (max-width: 768px) {
+  .onyx-inner {
+    /* Mobile irratti qulqullinaan akka mul'atu */
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+
+  .onyx-holder {
+    font-size: 0.9rem;
+  }
 }

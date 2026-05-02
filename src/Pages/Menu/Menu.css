@@ -257,4 +257,82 @@
     .menu-title {
         font-size: 2.2rem;
     }
+}/* --- 1. SKELETON LOADING ANIMATION --- */
+/* Hamma suuraan menu dhufutti bakka suuraa sitti agarsiisa */
+.skeleton {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* --- 2. MENU CARD HOVER GLOW (3D EFFECT) --- */
+/* Akkuma kaffaltii kee irratti arganneetti gadi fageenya kenna */
+.menu-card {
+    position: relative;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.menu-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.15);
+    /* Glow Effect */
+}
+
+/* --- 3. MOBILE OPTIMIZATION (Fix for Screenshot_20260502-072021.jpg) --- */
+@media (max-width: 768px) {
+    .category-tabs {
+        display: flex;
+        overflow-x: auto;
+        /* Mobile irratti scroll akka godhuuf */
+        white-space: nowrap;
+        padding: 5px 15px;
+        scrollbar-width: none;
+        width: 100%;
+        justify-content: flex-start;
+        /* Jalqaba irraa eegala */
+    }
+
+    .tab-btn {
+        flex: 0 0 auto;
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+
+    .menu-title {
+        font-size: 1.8rem;
+        /* Garmalee guddaa akka hin taane */
+        margin-top: 20px;
+    }
+
+    .menu-img-box {
+        height: 220px;
+        /* Mobile irratti suuraan akka bal'atu */
+    }
+}
+
+/* --- 4. VIEW BUTTON REFINEMENT --- */
+.view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.view-btn:hover {
+    background: var(--accent);
+    /* Yeroo hover godhamu halluu keelloo */
+    color: #000;
+    border-color: transparent;
 }
