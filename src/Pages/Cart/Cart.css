@@ -1,149 +1,54 @@
-/* --- CART PAGE PREMIUM STYLES --- */
+/* --- EMPTY CART STYLES (Suuraa kee irratti kan hundaa'e) --- */
 
-.cart-page {
-    padding: 100px 10% 60px;
-    min-height: 100vh;
-    background-color: #fcfcfc;
-    /* Halluu qulqulluu fi professional */
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* Kutaalee Kardiidhaan gargar baasuuf (Item cards) */
-.cart-items-list {
+.empty-cart-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.cart-item {
-    display: flex;
     align-items: center;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-    border: 1px solid #f1f1f1;
-    justify-content: space-between;
-}
-
-.cart-item img {
-    width: 90px;
-    height: 90px;
-    border-radius: 16px;
-    object-fit: cover;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* --- QUANTITY CONTROLS (Kutaaleen suuraa keessatti hin mul'anne sunneen) --- */
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    background: #f8f9fa;
-    /* Background itti daballee akka mul'atu goone */
-    padding: 8px 15px;
-    border-radius: 12px;
-    gap: 15px;
-    border: 1px solid #eee;
-}
-
-.qty-btn {
-    background: #ffffff;
-    border: 1px solid #ddd;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-weight: bold;
+    padding: 100px 20px;
+    text-align: center;
+    background: #fcfcfc;
+}
+
+/* "Korboo Keessan" ykn barreeffama background irratti bade sanaaf */
+.empty-cart-container h2 {
     color: #1a1a1a;
-    transition: 0.3s;
-}
-
-.qty-btn:hover {
-    background: #ff9f1c;
-    color: white;
-    border-color: #ff9f1c;
-}
-
-.quantity-value {
-    font-weight: 700;
-    color: #1a1a1a;
-    font-size: 1.1rem;
-}
-
-/* --- SUMMARY SECTION --- */
-.cart-summary {
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
-    height: fit-content;
-    border: 1px solid #f0f0f0;
-    position: sticky;
-    top: 120px;
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    color: #444;
-}
-
-.total-row {
-    border-top: 2px dashed #eee;
-    margin-top: 20px;
-    padding-top: 20px;
+    /* Halluu gurraacha ifa ta'e */
+    font-size: 2rem;
     font-weight: 800;
-    font-size: 1.4rem;
-    color: #1a1a1a;
+    margin-bottom: 10px;
 }
 
-/* --- CHECKOUT BUTTON (BAAY'EE BAREEDAA TA'E) --- */
-.checkout-btn {
-    background: linear-gradient(135deg, #ff9f1c, #ff8a00);
-    color: white;
+.empty-cart-container p {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Batoona "Menu-tti Deebi'i" isa suuraa irratti professional hin fakkaanne sanaaf */
+.back-to-menu-btn {
+    background: #334155;
+    /* Halluu Gray Solid professional sana */
+    color: #ffffff;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
     border: none;
-    padding: 20px;
-    border-radius: 18px;
-    font-weight: 800;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 25px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 12px 25px rgba(255, 159, 28, 0.3);
+    display: inline-block;
 }
 
-.checkout-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 35px rgba(255, 159, 28, 0.4);
-    filter: brightness(1.1);
+.back-to-menu-btn:hover {
+    background: #475569;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* --- MOBILE OPTIMIZATION --- */
-@media (max-width: 768px) {
-    .cart-page {
-        padding: 80px 20px 40px;
-    }
-
-    .cart-item {
-        flex-direction: row;
-        padding: 15px;
-        gap: 10px;
-    }
-
-    .cart-item img {
-        width: 70px;
-        height: 70px;
-    }
-
-    .quantity-controls {
-        padding: 5px 10px;
-    }
+/* Background image ykn icon xiqqoo yoo barbaadde */
+.empty-cart-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
 }

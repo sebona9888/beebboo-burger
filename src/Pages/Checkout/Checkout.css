@@ -1,111 +1,141 @@
-/* --- CHECKOUT PREMIUM STYLES --- */
+/* --- CHECKOUT PREMIUM & ATTRACTIVE STYLES --- */
 
 .checkout-container {
     padding: 100px 8% 60px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #fcfcfc;
-    /* Halluu background qulqulluu */
+    /* Background caalaatti qulqulluu fi soft ta'e */
+    background: radial-gradient(circle at top right, #ffffff, #f8fafc);
     font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
 }
 
 .checkout-content {
     display: grid;
-    grid-template-columns: 1.8fr 1fr;
+    grid-template-columns: 1.8fr 1.2fr;
+    /* Summary-f bakka xiqqoo bal'isne */
     gap: 40px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
-/* --- FORM & SUMMARY CARDS --- */
+/* --- CARDS (FORM & SUMMARY) --- */
 .checkout-form,
 .order-summary {
     background: #ffffff;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
-    border: 1px solid #f0f0f0;
+    padding: 40px;
+    border-radius: 30px;
+    /* Curve isaa caalaatti soft goone */
+    /* Shadow caalaatti gadi fageenya qabu */
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.checkout-form:hover,
+.order-summary:hover {
+    transform: translateY(-5px);
+    /* Hover irratti xiqqoo ol ka'a */
 }
 
 .checkout-form h2 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    color: #1a1a1a;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #0f172a;
     font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
-/* --- INPUT BOXES (SUURAA image_3c379f.png IRRATTII KAN SIRREEFFAME) --- */
+/* --- INPUT BOXES (Premium UI Refinement) --- */
+.checkout-form .input-group {
+    margin-bottom: 25px;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
 .checkout-form input,
 .checkout-form textarea,
 .payment-select {
     width: 100%;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    /* Sarara furdaa suuraa irratti mul'atu qallisuuf border 1.5px qofa goone */
-    border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
+    padding: 16px 24px;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 16px;
     font-size: 1rem;
     background-color: #f8fafc;
-    transition: all 0.3s ease;
-    color: #334155;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #1e293b;
     outline: none;
 }
 
-/* Yeroo cuqaasamu (Focus Effect) */
+/* Hover & Focus (Suuraa image_3c379f.png irratti kan fooyya'e) */
+.checkout-form input:hover {
+    border-color: #cbd5e1;
+}
+
 .checkout-form input:focus,
 .payment-select:focus {
     border-color: #ff9f1c;
-    /* Halluu primary orange */
     background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(255, 159, 28, 0.1);
+    /* Glow effect orange */
+    box-shadow: 0 0 0 4px rgba(255, 159, 28, 0.15);
+    transform: scale(1.01);
 }
 
-/* --- ORDER SUMMARY DETAILS --- */
+/* --- ORDER SUMMARY (CLEAN & BOLD) --- */
 .order-summary h3 {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #f8fafc;
-    padding-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #0f172a;
+    font-weight: 800;
 }
 
 .summary-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     color: #64748b;
+    font-weight: 500;
 }
 
 .summary-total {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px dashed #e2e8f0;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px dashed #f1f5f9;
     font-weight: 800;
-    font-size: 1.3rem;
-    color: #0f172a;
+    font-size: 1.5rem;
+    color: #ff9f1c;
+    /* Gatiin waliigalaa orange ta'eera */
 }
 
-/* --- CONFIRM BUTTON (SOLID GRADIENT) --- */
+/* --- CONFIRM BUTTON (THE SHOWSTOPPER) --- */
 .confirm-btn {
     width: 100%;
-    background: linear-gradient(135deg, #ff9f1c, #ff8a00);
+    background: linear-gradient(135deg, #ff9f1c 0%, #ff6b00 100%);
     color: white;
-    padding: 18px;
+    padding: 22px;
     border: none;
-    border-radius: 14px;
+    border-radius: 20px;
     font-size: 1.1rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(255, 159, 28, 0.2);
-    margin-top: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(255, 159, 28, 0.3);
+    margin-top: 15px;
 }
 
 .confirm-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(255, 159, 28, 0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 159, 28, 0.4);
     filter: brightness(1.1);
 }
 
@@ -117,14 +147,16 @@
 @media (max-width: 992px) {
     .checkout-content {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .checkout-container {
-        padding: 80px 20px;
+        padding: 60px 20px;
     }
 
     .checkout-form,
     .order-summary {
-        padding: 25px 20px;
+        padding: 30px 20px;
+        border-radius: 25px;
     }
 }
