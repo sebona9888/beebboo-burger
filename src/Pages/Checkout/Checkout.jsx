@@ -6,8 +6,8 @@ import './Checkout.css';
 const Checkout = () => {
     const { cartItems, totalPrice, clearCart } = useCart();
 
-    // Vite keessatti process.env bakka bu'ee kan hojjetu import.meta.env dha
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    // ✅ ONLY use env variable (NO localhost fallback)
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -22,114 +22,74 @@ const Checkout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!BACKEND_URL) {
+            alert("Backend URL hin jiruu! Vercel keessatti VITE_BACKEND_URL galchaa.");
+            return;
+        }
+
         if (cartItems.length === 0) {
-            alert("Korbofni keessan duwwaa dha. Maaloo dura nyaata filadhaa!");
+            alert("Korbofni keessan duwwaa dha!");
             return;
         }
 
         if (formData.paymentMethod !== 'Cash' && !screenshot) {
-            alert("Maaloo, dura screenshot kaffaltii galchaa!");
+            alert("Screenshot kaffaltii barbaachisa!");
             return;
         }
 
         setLoading(true);
 
-        const data = new FormData();
-        data.append('fullName', formData.fullName);
-        data.append('phone', formData.phone);
-        data.append('address', formData.address);
-        data.append('paymentMethod', formData.paymentMethod);
-        data.append('totalPrice', totalPrice);
-        data.append('items', JSON.stringify(cartItems));
-
-        if (screenshot) {
-            data.append('screenshot', screenshot);
-        }
-
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/orders`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const data = new FormData();
+            data.append('fullName', formData.fullName);
+            data.append('phone', formData.phone);
+            data.append('address', formData.address);
+            data.append('paymentMethod', formData.paymentMethod);
+            data.append('totalPrice', totalPrice);
+            data.append('items', JSON.stringify(cartItems));
 
-            if (response.status === 201) {
-                alert(`Tole ${formData.fullName}, Ajajni keessan milkiin fudhatameera!`);
-                clearCart();
+            if (screenshot) {
+                data.append('screenshot', screenshot);
             }
-        } catch (error) {
-            console.error("Order Error:", error);
-            alert("Ajaja erguu irratti rakkoon uumameera. Maaloo irra deebiaa yaalaa.");
+
+            console.log("Sending to:", BACKEND_URL);
+
+            await axios.post(`${BACKEND_URL}/api/orders`, data);
+
+            alert(`Tole ${formData.fullName}, Ajajni keessan milkaa'e!`);
+            clearCart();
+
+        } catch (err) {
+            console.error(err.response?.data || err.message);
+            alert(err.response?.data?.message || "Error occurred!");
         } finally {
             setLoading(false);
         }
     };
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleFileChange = (e) => {
-        setScreenshot(e.target.files[0]);
-    };
-
     return (
-        <div className="checkout-container fade-in">
+        <div className="checkout-container">
             <h1>Checkout</h1>
-            <div className="checkout-content">
-                <form className="checkout-form" onSubmit={handleSubmit}>
-                    <h3>Odeeffannoo Keessan</h3>
-                    <div className="input-group">
-                        <input type="text" name="fullName" placeholder="Maqaa Guutuu" onChange={handleChange} required />
-                        <input type="tel" name="phone" placeholder="Lakkoofsa Bilbilaa" onChange={handleChange} required />
-                        <textarea name="address" placeholder="Teessoo (Address) Keessan" onChange={handleChange} required></textarea>
-                    </div>
 
-                    <h3>Kaffaltii</h3>
-                    <select name="paymentMethod" onChange={handleChange} className="payment-select">
-                        <option value="Cash">Cash on Delivery</option>
-                        <option value="Telebirr">Telebirr</option>
-                        <option value="CBE">CBE Birr</option>
-                    </select>
+            <form onSubmit={handleSubmit}>
+                <input name="fullName" placeholder="Full Name" onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} required />
+                <input name="phone" placeholder="Phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} required />
+                <textarea name="address" placeholder="Address" onChange={(e) => setFormData({ ...formData, address: e.target.value })} required />
 
-                    {formData.paymentMethod !== 'Cash' && (
-                        <div className="screenshot-upload" style={{ marginTop: '20px', padding: '15px', border: '1px dashed #facc15', borderRadius: '10px' }}>
-                            <p style={{ fontSize: '0.8rem', color: '#facc15', marginBottom: '10px' }}>
-                                * Maaloo kaffaltii kaffaltanii screenshot ergaa.
-                            </p>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                style={{ color: 'white' }}
-                                required={formData.paymentMethod !== 'Cash'}
-                            />
-                        </div>
-                    )}
+                <select name="paymentMethod" onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}>
+                    <option value="Cash">Cash</option>
+                    <option value="Telebirr">Telebirr</option>
+                    <option value="CBE">CBE</option>
+                </select>
 
-                    <button type="submit" className="confirm-btn" disabled={loading}>
-                        {loading ? "Eegamaa jira..." : "Ajaja Mirkaneessi"}
-                    </button>
-                </form>
+                {formData.paymentMethod !== 'Cash' && (
+                    <input type="file" onChange={(e) => setScreenshot(e.target.files[0])} required />
+                )}
 
-                <div className="order-summary">
-                    {/* Kutaan summary akka jirutti tura */}
-                    <h3>Ajaja Keessan</h3>
-                    <div className="summary-list">
-                        {cartItems.map(item => (
-                            <div key={item._id} className="summary-item">
-                                <span>{item.name} (x{item.qty})</span>
-                                <span>{(item.price * item.qty).toLocaleString()} ETB</span>
-                            </div>
-                        ))}
-                    </div>
-                    <hr />
-                    <div className="summary-total">
-                        <strong>Waliigala:</strong>
-                        <strong>{totalPrice.toLocaleString()} ETB</strong>
-                    </div>
-                </div>
-            </div>
+                <button disabled={loading}>
+                    {loading ? "Loading..." : "Order Now"}
+                </button>
+            </form>
         </div>
     );
 };
