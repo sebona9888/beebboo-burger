@@ -7,15 +7,17 @@ const Home = () => {
         <div className="home-container">
             <section className="hero">
                 <div className="hero-content">
-                    {/* Barreeffama simannaa haaraa dabalame */}
-                    <h4 className="animate-up welcome-title">WELCOME TO BEEBBOO BURGER</h4>
+                    {/* Barreeffama guddaa fi socho'u */}
+                    <h2 className="welcome-banner animate-slide-in">
+                        WELCOME TO BEEBBOO BURGER
+                    </h2>
 
-                    <h1 className="animate-up">
+                    <h1 className="animate-up main-title">
                         Nyaata Qulqulluu, <br />
                         <span>Beebboo Burger!</span>
                     </h1>
 
-                    <p className="animate-up">
+                    <p className="animate-up description-text">
                         Discover the best burger experience in Addis Ababa,
                         crafted with precision and premium ingredients.
                     </p>
@@ -27,7 +29,6 @@ const Home = () => {
                 </div>
 
                 <div className="hero-image-container">
-                    {/* Blob Shape Animaashinii viidiyoo sanaa */}
                     <div className="blob-frame">
                         <img
                             src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1000&auto=format&fit=crop"
