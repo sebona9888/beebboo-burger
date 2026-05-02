@@ -1,54 +1,85 @@
-/* --- EMPTY CART STYLES (Suuraa kee irratti kan hundaa'e) --- */
-
-.empty-cart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 20px;
-    text-align: center;
-    background: #fcfcfc;
-}
-
-/* "Korboo Keessan" ykn barreeffama background irratti bade sanaaf */
-.empty-cart-container h2 {
-    color: #1a1a1a;
-    /* Halluu gurraacha ifa ta'e */
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.empty-cart-container p {
-    color: #64748b;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-}
-
-/* Batoona "Menu-tti Deebi'i" isa suuraa irratti professional hin fakkaanne sanaaf */
-.back-to-menu-btn {
-    background: #334155;
-    /* Halluu Gray Solid professional sana */
+/* --- CART PAGE DARK PREMIUM --- */
+.cart-page {
+    padding: 100px 10% 60px;
+    min-height: 100vh;
+    background-color: #020617;
+    /* Background gurraacha */
     color: #ffffff;
-    padding: 12px 25px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.back-to-menu-btn:hover {
-    background: #475569;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.cart-page h1 {
+    color: #facc15;
+    /* Yellow/Gold */
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-/* Background image ykn icon xiqqoo yoo barbaadde */
-.empty-cart-icon {
-    font-size: 4rem;
+.cart-item {
+    display: flex;
+    align-items: center;
+    background: #111827;
+    /* Dark Grey Card */
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(250, 204, 21, 0.2);
+    /* Sarara keelloo laafaa */
     margin-bottom: 20px;
-    opacity: 0.3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid #facc15;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    background: #1f2937;
+    padding: 10px 15px;
+    border-radius: 10px;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.qty-btn {
+    background: #facc15;
+    color: #000;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.cart-summary {
+    background: #111827;
+    padding: 30px;
+    border-radius: 20px;
+    border-top: 4px solid #facc15;
+}
+
+.checkout-btn {
+    background: #facc15;
+    color: #000;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #eab308;
+    transform: scale(1.02);
 }
