@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-// 1. Path kallaattii file 'useCart' irratti jijjiirameera
 import { useCart } from '../../context/useCart';
+import axios from 'axios'; // Axios fayyadamuu dandeessa ykn fetch
 import './Checkout.css';
 
 const Checkout = () => {
-    // 2. 'clearCart' dabalameera
     const { cartItems, totalPrice, clearCart } = useCart();
 
     const [formData, setFormData] = useState({
@@ -14,7 +13,10 @@ const Checkout = () => {
         paymentMethod: 'Cash'
     });
 
-    const handleSubmit = (e) => {
+    const [screenshot, setScreenshot] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (cartItems.length === 0) {
@@ -22,15 +24,52 @@ const Checkout = () => {
             return;
         }
 
-        alert(`Tole ${formData.fullName}, Ajajni keessan fudhatameera!`);
-        console.log("Order Details:", { items: cartItems, customer: formData, total: totalPrice });
+        if (formData.paymentMethod !== 'Cash' && !screenshot) {
+            alert("Maaloo, dura screenshot kaffaltii galchaa!");
+            return;
+        }
 
-        // Ajajni erga mirkanaa'ee booda korboo qulqulleessuuf
-        clearCart();
+        setLoading(true);
+
+        // --- RAGAA GARA BACKEND ERGUUF (FormData) ---
+        const data = new FormData();
+        data.append('fullName', formData.fullName);
+        data.append('phone', formData.phone);
+        data.append('address', formData.address);
+        data.append('paymentMethod', formData.paymentMethod);
+        data.append('totalPrice', totalPrice);
+        data.append('items', JSON.stringify(cartItems)); // Array gara String-tti jijjiiri
+
+        if (screenshot) {
+            data.append('screenshot', screenshot);
+        }
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/orders', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (response.status === 201) {
+                alert(`Tole ${formData.fullName}, Ajajni keessan milkiin fudhatameera!`);
+                clearCart();
+                // Gara fuula biraatti redirect gochuu dandeessa
+            }
+        } catch (error) {
+            console.error("Order Error:", error);
+            alert("Ajaja erguu irratti rakkoon uumameera. Maaloo irra deebiaa yaalaa.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (e) => {
+        setScreenshot(e.target.files[0]);
     };
 
     return (
@@ -38,7 +77,6 @@ const Checkout = () => {
             <h1>Checkout</h1>
             <div className="checkout-content">
 
-                {/* Form Odeeffannoo Sassaabu */}
                 <form className="checkout-form" onSubmit={handleSubmit}>
                     <h3>Odeeffannoo Keessan</h3>
                     <div className="input-group">
@@ -53,15 +91,31 @@ const Checkout = () => {
                         <option value="Telebirr">Telebirr</option>
                         <option value="CBE">CBE Birr</option>
                     </select>
-                    <button type="submit" className="confirm-btn">Ajaja Mirkaneessi</button>
+
+                    {formData.paymentMethod !== 'Cash' && (
+                        <div className="screenshot-upload" style={{ marginTop: '20px', padding: '15px', border: '1px dashed #facc15', borderRadius: '10px' }}>
+                            <p style={{ fontSize: '0.8rem', color: '#facc15', marginBottom: '10px' }}>
+                                * Maaloo kaffaltii kaffaltanii screenshot ergaa.
+                            </p>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                style={{ color: 'white' }}
+                                required={formData.paymentMethod !== 'Cash'}
+                            />
+                        </div>
+                    )}
+
+                    <button type="submit" className="confirm-btn" disabled={loading}>
+                        {loading ? "Eegamaa jira..." : "Ajaja Mirkaneessi"}
+                    </button>
                 </form>
 
-                {/* Summary Ajajaa */}
                 <div className="order-summary">
                     <h3>Ajaja Keessan</h3>
                     <div className="summary-list">
                         {cartItems.map(item => (
-                            // 'item.id' gara 'item._id' tti jijjiirameera
                             <div key={item._id} className="summary-item">
                                 <span>{item.name} (x{item.qty})</span>
                                 <span>{(item.price * item.qty).toLocaleString()} ETB</span>

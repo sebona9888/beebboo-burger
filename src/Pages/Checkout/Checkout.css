@@ -338,4 +338,21 @@
     .total-price-onyx {
         font-size: 1.2rem;
     }
+}.checkout-form input[type="file"] {
+    padding: 10px;
+    background: #1e293b;
+    border: 2px dashed #facc15;
+    /* Sarara cituu keelloo */
+    cursor: pointer;
+}
+
+.checkout-form input[type="file"]::file-selector-button {
+    background: #facc15;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-right: 15px;
+    cursor: pointer;
 }
