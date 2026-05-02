@@ -6,9 +6,8 @@ import './Checkout.css';
 const Checkout = () => {
     const { cartItems, totalPrice, clearCart } = useCart();
 
-    // BACKEND_URL: Yoo Vercel irratti fe'ameera ta'e URL Render kee fayyadama, 
-    // yoo kompiitara kee irratti ta'e ammoo localhost fayyadama.
-    const BACKEND_URL = (typeof process !== 'undefined' && process.env.REACT_APP_BACKEND_URL) || 'http://localhost:5000';
+    // Vite keessatti process.env bakka bu'ee kan hojjetu import.meta.env dha
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -48,7 +47,6 @@ const Checkout = () => {
         }
 
         try {
-            // URL asirratti BACKEND_URL fayyadami
             const response = await axios.post(`${BACKEND_URL}/api/orders`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -60,7 +58,7 @@ const Checkout = () => {
                 clearCart();
             }
         } catch (error) {
-            console.error("Order Error details:", error.response ? error.response.data : error.message);
+            console.error("Order Error:", error);
             alert("Ajaja erguu irratti rakkoon uumameera. Maaloo irra deebiaa yaalaa.");
         } finally {
             setLoading(false);
@@ -104,7 +102,7 @@ const Checkout = () => {
                                 accept="image/*"
                                 onChange={handleFileChange}
                                 style={{ color: 'white' }}
-                                required
+                                required={formData.paymentMethod !== 'Cash'}
                             />
                         </div>
                     )}
@@ -115,6 +113,7 @@ const Checkout = () => {
                 </form>
 
                 <div className="order-summary">
+                    {/* Kutaan summary akka jirutti tura */}
                     <h3>Ajaja Keessan</h3>
                     <div className="summary-list">
                         {cartItems.map(item => (
@@ -124,7 +123,6 @@ const Checkout = () => {
                             </div>
                         ))}
                     </div>
-                    {cartItems.length === 0 && <p className="empty-msg">Korboon keessan duwwaa dha.</p>}
                     <hr />
                     <div className="summary-total">
                         <strong>Waliigala:</strong>
