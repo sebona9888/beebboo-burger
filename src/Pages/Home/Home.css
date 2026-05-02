@@ -10,15 +10,14 @@
     background-color: #0b0b0f;
 }
 .welc.home-title {
-    color: #ff781f;
-    /* Halluu Orange vibrant suuraa irratti mul'atu sana */
+    color: #ff781f; /* Halluu Orange vibrant suuraa irratti mul'atu sana */
     font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 4px;
     margin-bottom: 10px;
     text-transform: uppercase;
     /* Akka suuraa sanaa irratti xiqqoo ifu (glow) yoo barbaadde: */
-    text-shadow: 0 0 15px rgba(31, 255, 124, 0.3);
+    text-shadow: 0 0 15px rgba(255, 120, 31, 0.3);
 }
 
 /* Halluu Gray barreeffama gadiitiif */
@@ -285,4 +284,44 @@
         font-size: 1.8rem;
         letter-spacing: 1px;
     }
+}/* --- WELCOME TEXT STYLING (image_b2f7a1.png) --- */
+
+.moving-welcome {
+    /* Halluu Orange suuraa sanaa */
+    color: #ff781f;
+
+    /* Qubee gurguddaa fi ija kooraa */
+    font-size: 3.8rem;
+    font-weight: 900;
+
+    /* Qubee hunda gurguddaa gochuuf */
+    text-transform: uppercase;
+
+    /* Fageenya qubeewwan gidduu dhiphisuuf */
+    letter-spacing: -2px;
+    line-height: 1;
+
+    /* Glow effect dukkanicha keessatti akka ifuuf */
+    text-shadow: 0 0 15px rgba(255, 120, 31, 0.4),
+        0 0 30px rgba(255, 120, 31, 0.2);
+
+    margin-bottom: 5px;
+    display: block;
+    font-family: 'Arial Black', sans-serif;
+    /* Qubee furdaa qabu */
+}
+
+/* Mobile irratti akka sirriitti mul'atuuf */
+@media (max-width: 768px) {
+    .moving-welcome {
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+    }
+}
+
+/* Halluu "Beebboo Burger!" isa jalatti jiruuf */
+.animate-up span {
+    color: #ff781f;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 120, 31, 0.3);
 }

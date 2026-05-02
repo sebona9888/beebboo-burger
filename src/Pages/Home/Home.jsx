@@ -7,12 +7,12 @@ const Home = () => {
         <div className="home-container">
             <section className="hero">
                 <div className="hero-content">
-                    {/* Barreeffama simannaa guddaa fi walitti fufinsaan socho'u */}
+                    {/* Barreeffama simannaa image_b2f7a1.png fakkaatu */}
                     <h1 className="moving-welcome">WELCOME TO BEEBBOO BURGER</h1>
 
                     <h1 className="animate-up">
                         Nyaata Qulqulluu, <br />
-                        <span>Beebboo Burger!</span>
+                        <span>BEEBBOO BURGER!</span>
                     </h1>
 
                     <p className="animate-up">
