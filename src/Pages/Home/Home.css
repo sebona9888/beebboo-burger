@@ -243,4 +243,44 @@
     .home-container::after {
         font-size: 5rem;
     }
+}/* Barreeffama simannaa baay'ee guddaa fi kan walitti fufinsaan socho'u */
+.moving-welcome {
+    font-size: 3rem;
+    /* Baay'ee guddaa */
+    font-weight: 900;
+    color: #f97316;
+    /* Halluu Orange bifa image_b4645d.png sanaa */
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+
+    /* Animaashinii walitti fufinsaan socho'u */
+    animation: continuousSlide 4s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+/* Animaashinii bitaa fi mirgaa */
+@keyframes continuousSlide {
+    0% {
+        transform: translateX(-15px);
+    }
+
+    100% {
+        transform: translateX(15px);
+        text-shadow: 0 0 30px rgba(249, 115, 22, 0.6);
+    }
+}
+
+/* Halluu BEEBBOO BURGER! isa gadii (image_b4645d.png waliin akka deemuuf) */
+.hero-content h1 span {
+    color: #f97316;
+}
+
+/* Mobile irratti akka sirriitti mul'atuuf */
+@media (max-width: 768px) {
+    .moving-welcome {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
 }

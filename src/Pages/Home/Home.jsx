@@ -7,8 +7,8 @@ const Home = () => {
         <div className="home-container">
             <section className="hero">
                 <div className="hero-content">
-                    {/* Barreeffama simannaa haaraa dabalame */}
-                    <h4 className="animate-up welcome-title">WELCOME TO BEEBBOO BURGER</h4>
+                    {/* Barreeffama simannaa guddaa fi walitti fufinsaan socho'u */}
+                    <h1 className="moving-welcome">WELCOME TO BEEBBOO BURGER</h1>
 
                     <h1 className="animate-up">
                         Nyaata Qulqulluu, <br />
@@ -27,7 +27,6 @@ const Home = () => {
                 </div>
 
                 <div className="hero-image-container">
-                    {/* Blob Shape Animaashinii viidiyoo sanaa */}
                     <div className="blob-frame">
                         <img
                             src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1000&auto=format&fit=crop"
