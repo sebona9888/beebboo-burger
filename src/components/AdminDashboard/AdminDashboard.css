@@ -34,24 +34,70 @@
     width: 100%;
 }
 
-/* --- Login Overlay --- */
+/* --- Login Overlay (Sirreeffama Suuraa Haaraa) --- */
 .login-overlay {
     height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    background: #000;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .login-card {
     background: var(--card-bg);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
+    /* Moobaayilaaf kan mijatu */
+}
+
+.login-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+/* Input fi Button wal-jala galchuuf */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.login-card button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 /* --- Form Styles --- */
@@ -128,14 +174,7 @@
     background: var(--card-bg);
     padding: 15px 20px;
     border-radius: 10px;
-    transition: var(--transition);
     box-sizing: border-box;
-}
-
-.burger-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .btn-delete {
@@ -148,17 +187,12 @@
     font-weight: bold;
 }
 
-/* --- Mobile Responsive Fixes (image_0d9036.png Fix) --- */
+/* --- Mobile Responsive --- */
 @media (max-width: 600px) {
     .admin-container {
         margin: 10px;
         padding: 10px;
         width: calc(100% - 20px);
-        align-items: center;
-    }
-
-    .admin-title {
-        font-size: 1.6rem;
     }
 
     .form-group {
@@ -170,30 +204,13 @@
         grid-column: span 1;
     }
 
-    .add-burger-form {
-        padding: 15px;
-    }
-
     .burger-item {
         flex-direction: column;
         gap: 15px;
         text-align: center;
-        width: 100%;
-        padding: 20px;
-    }
-
-    .burger-info {
-        align-items: center;
     }
 
     .btn-delete {
         width: 100%;
-    }
-
-    /* Burgers List gidduu galeessa akka ta'uuf */
-    .burgers-section h3 {
-        width: 100%;
-        margin-left: 0;
-        text-align: center;
     }
 }
