@@ -7,7 +7,6 @@ const Navbar = () => {
     const { cartCount } = useCart();
     const [isOpen, setIsOpen] = useState(false);
 
-    // Sidebar banuufi cufuuf
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
@@ -16,7 +15,7 @@ const Navbar = () => {
         display: 'inline-block',
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: '24px',
+        fontSize: '22px',
         textShadow: `1px 1px 0px #ccc, 2px 2px 0px #bbb, 3px 3px 0px #aaa, 4px 4px 5px rgba(0,0,0,0.5)`
     };
 
@@ -27,26 +26,24 @@ const Navbar = () => {
 
     return (
         <>
-            {/* 1. MADDII (OVERLAY) - Bakka kana yoo tuqxe side bar-ichi ni cufama */}
+            {/* Maddii (Overlay) - Yeroo kana tuqan side bar-ichi ni cufama */}
             <div
                 className={`nav-overlay ${isOpen ? 'active' : ''}`}
                 onClick={closeMenu}
             ></div>
 
             <nav className="navbar">
-                {/* 2. HAMBURGER ICON */}
+                {/* Hamburger - Ofumaan gara X-tti jijjiirama, dabalata hin barbaadu */}
                 <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="bar"></span>
                 </div>
 
-                {/* 3. LOGO */}
                 <Link to="/" className="logo" style={logo3DStyle}>
                     Beebboo <span style={burger3DStyle}>Burger</span>
                 </Link>
 
-                {/* 4. NAV LINKS (SIDEBAR) */}
                 <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
                     <li><Link to="/" className="nav-item" onClick={closeMenu}>Home</Link></li>
                     <li><Link to="/menu" className="nav-item" onClick={closeMenu}>Menu</Link></li>
@@ -56,10 +53,9 @@ const Navbar = () => {
                     <li><Link to="/admin" className="nav-item" onClick={closeMenu}>Admin</Link></li>
                 </ul>
 
-                {/* 5. CART ICON */}
                 <div className="nav-icons">
                     <Link to="/cart" className="cart-btn" style={{ textDecoration: 'none', color: '#fff' }}>
-                        🛒 <span className="cart-badge">({cartCount})</span>
+                        🛒 ({cartCount})
                     </Link>
                 </div>
             </nav>

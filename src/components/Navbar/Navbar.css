@@ -1,4 +1,3 @@
-/* --- Base Styles --- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -25,13 +24,11 @@
 
 /* --- Mobile Styling (Silkif) --- */
 @media (max-width: 768px) {
-
-    /* Hamburger Style */
     .hamburger {
         display: block;
         cursor: pointer;
-        z-index: 1300;
-        /* Sidebar ol akka ta'uuf */
+        z-index: 2100;
+        /* Sidebar gubbaa akka ta'uuf */
         order: -1;
     }
 
@@ -44,7 +41,7 @@
         transition: 0.3s;
     }
 
-    /* Animation to X */
+    /* Animation Hamburger gara X tti */
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -57,43 +54,34 @@
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Sidebar Size fi Halluu */
     .nav-links {
         position: fixed;
         left: -100%;
-        /* Bitaatti dhokata */
+        /* Jalqaba bitaatti dhokata */
         top: 0;
         flex-direction: column;
         background-color: #1a1a1a;
         width: 60%;
-        /* Bal'ina xiqqeeffame */
+        /* Bal'ina isaa */
         height: 100vh;
         align-items: flex-start;
-        padding: 100px 40px;
-        gap: 30px;
+        padding: 100px 30px;
+        gap: 25px;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.7);
-        z-index: 1200;
-        transition: left 0.3s ease-out;
+        z-index: 2000;
+        transition: left 0.3s ease-in-out;
     }
 
     .nav-links.open {
         left: 0;
-        /* Bitaa irraa dhufee banama */
+        /* Bitaa irraa dhufa */
     }
 
-    /* Halluu barreeffamaa sidebar keessaa */
     .nav-links li .nav-item {
         color: #ffffff !important;
-        /* Adii akka ta'uuf */
         font-size: 1.3rem;
-        width: 100%;
         display: block;
-        transition: 0.2s;
-    }
-
-    .nav-links li .nav-item:active {
-        color: #ff9d00 !important;
-        /* Yeroo tuqamu orange ta'a */
+        width: 100%;
     }
 
     /* Maddii (Overlay) */
@@ -104,18 +92,15 @@
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.7);
-        /* Maddii isaa ni dukkaneessa */
-        z-index: 1100;
+        z-index: 1500;
         display: none;
     }
 
     .nav-overlay.active {
         display: block;
-        /* Yeroo sidebar banamu mul'ata */
     }
 }
 
-/* PC irratti hamburger dhoksuuf */
 @media (min-width: 769px) {
 
     .hamburger,
