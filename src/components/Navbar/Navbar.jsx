@@ -10,55 +10,48 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
-    const logo3DStyle = {
-        textDecoration: 'none',
-        display: 'inline-block',
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: '22px',
-        textShadow: `1px 1px 0px #ccc, 2px 2px 0px #bbb, 3px 3px 0px #aaa, 4px 4px 5px rgba(0,0,0,0.5)`
-    };
-
-    const burger3DStyle = {
-        color: '#ff9d00',
-        textShadow: `1px 1px 0px #d48400, 2px 2px 0px #b06d00, 3px 3px 0px #8a5500, 4px 4px 5px rgba(0,0,0,0.5)`
-    };
-
     return (
         <>
-            {/* Maddii (Overlay) */}
+            {/* Overlay */}
             <div
                 className={`nav-overlay ${isOpen ? 'active' : ''}`}
                 onClick={closeMenu}
             ></div>
 
             <nav className="navbar">
-                {/* Hamburger Menu */}
-                <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
+
+                {/* Hamburger */}
+                <div
+                    className={`hamburger ${isOpen ? 'active' : ''}`}
+                    onClick={toggleMenu}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
 
-                <Link to="/" className="logo" style={logo3DStyle}>
-                    Beebboo <span style={burger3DStyle}>Burger</span>
+                {/* Logo */}
+                <Link to="/" className="logo" onClick={closeMenu}>
+                    Beebboo <span>Burger</span>
                 </Link>
 
-                {/* Sidebar Links */}
+                {/* Links */}
                 <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                    <li><Link to="/" className="nav-item" onClick={closeMenu}>Home</Link></li>
-                    <li><Link to="/menu" className="nav-item" onClick={closeMenu}>Menu</Link></li>
-                    <li><Link to="/about" className="nav-item" onClick={closeMenu}>About</Link></li>
-                    <li><Link to="/contact" className="nav-item" onClick={closeMenu}>Contact</Link></li>
-                    <li><Link to="/payment" className="nav-item" onClick={closeMenu}>Payment</Link></li>
-                    <li><Link to="/admin" className="nav-item" onClick={closeMenu}>Admin</Link></li>
+                    <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+                    <li><Link to="/menu" onClick={closeMenu}>Menu</Link></li>
+                    <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+                    <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+                    <li><Link to="/payment" onClick={closeMenu}>Payment</Link></li>
+                    <li><Link to="/admin" onClick={closeMenu}>Admin</Link></li>
                 </ul>
 
+                {/* Cart */}
                 <div className="nav-icons">
-                    <Link to="/cart" className="cart-btn" style={{ textDecoration: 'none', color: '#fff' }}>
+                    <Link to="/cart" onClick={closeMenu}>
                         🛒 ({cartCount})
                     </Link>
                 </div>
+
             </nav>
         </>
     );
