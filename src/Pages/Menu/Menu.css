@@ -134,6 +134,17 @@
     padding: 20px;
 }
 
+/* FIX: image_17a3a6.png irratti barreeffama ifa gochuuf */
+.menu-info h3 {
+    color: #ffffff !important;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.menu-info p {
+    color: #e2e8f0 !important;
+}
+
 .price {
     color: var(--accent);
     font-weight: bold;
@@ -144,7 +155,6 @@
 .view-btn {
     margin-top: 15px;
     background: #334155;
-    /* Solid Gray */
     color: #f1f5f9;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 20px;
@@ -187,6 +197,17 @@
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     animation: popUp 0.3s ease-out;
+}
+
+/* FIX: Modal text visibility for image_17a3a6.png */
+.modal-details h2,
+.modal-details h3 {
+    color: #ffffff !important;
+}
+
+.modal-details p,
+.modal-details li {
+    color: #cbd5e1 !important;
 }
 
 .modal-img-container {
@@ -257,8 +278,9 @@
     .menu-title {
         font-size: 2.2rem;
     }
-}/* --- 1. SKELETON LOADING ANIMATION --- */
-/* Hamma suuraan menu dhufutti bakka suuraa sitti agarsiisa */
+}
+
+/* --- 1. SKELETON LOADING ANIMATION --- */
 .skeleton {
     background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
     background-size: 200% 100%;
@@ -276,7 +298,6 @@
 }
 
 /* --- 2. MENU CARD HOVER GLOW (3D EFFECT) --- */
-/* Akkuma kaffaltii kee irratti arganneetti gadi fageenya kenna */
 .menu-card {
     position: relative;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
@@ -286,21 +307,22 @@
     transform: translateY(-12px) scale(1.02);
     border-color: var(--accent) !important;
     box-shadow: 0 0 30px rgba(250, 204, 21, 0.15);
-    /* Glow Effect */
 }
 
-/* --- 3. MOBILE OPTIMIZATION (Fix for Screenshot_20260502-072021.jpg) --- */
+/* --- 3. MOBILE OPTIMIZATION --- */
 @media (max-width: 768px) {
     .category-tabs {
         display: flex;
         overflow-x: auto;
-        /* Mobile irratti scroll akka godhuuf */
         white-space: nowrap;
         padding: 5px 15px;
         scrollbar-width: none;
         width: 100%;
         justify-content: flex-start;
-        /* Jalqaba irraa eegala */
+    }
+
+    .category-tabs::-webkit-scrollbar {
+        display: none;
     }
 
     .tab-btn {
@@ -311,13 +333,11 @@
 
     .menu-title {
         font-size: 1.8rem;
-        /* Garmalee guddaa akka hin taane */
         margin-top: 20px;
     }
 
     .menu-img-box {
         height: 220px;
-        /* Mobile irratti suuraan akka bal'atu */
     }
 }
 
@@ -332,7 +352,6 @@
 
 .view-btn:hover {
     background: var(--accent);
-    /* Yeroo hover godhamu halluu keelloo */
     color: #000;
     border-color: transparent;
 }
