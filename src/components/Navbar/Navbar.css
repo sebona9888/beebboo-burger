@@ -10,25 +10,13 @@
     height: 70px;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-
-.nav-item {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-/* --- Mobile Styling (Silkif) --- */
+/* --- Mobile Styling --- */
 @media (max-width: 768px) {
     .hamburger {
         display: block;
         cursor: pointer;
-        z-index: 2100;
-        /* Sidebar gubbaa akka ta'uuf */
+        z-index: 3000;
+        /* Sidebar hunda ol akka ta'uuf */
         order: -1;
     }
 
@@ -41,7 +29,6 @@
         transition: 0.3s;
     }
 
-    /* Animation Hamburger gara X tti */
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -57,34 +44,36 @@
     .nav-links {
         position: fixed;
         left: -100%;
-        /* Jalqaba bitaatti dhokata */
         top: 0;
         flex-direction: column;
         background-color: #1a1a1a;
         width: 60%;
-        /* Bal'ina isaa */
         height: 100vh;
         align-items: flex-start;
         padding: 100px 30px;
         gap: 25px;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.7);
-        z-index: 2000;
-        transition: left 0.3s ease-in-out;
+        z-index: 2500;
+        /* Overlay ol ta'uu qaba */
+        transition: left 0.3s ease-out;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
     }
 
     .nav-links.open {
         left: 0;
-        /* Bitaa irraa dhufa */
     }
 
-    .nav-links li .nav-item {
+    .nav-item {
         color: #ffffff !important;
+        /* Halluu adii ifa ta'e */
         font-size: 1.3rem;
+        text-decoration: none;
         display: block;
         width: 100%;
+        padding: 10px 0;
+        z-index: 2600;
+        /* Liinkichi akka tuqamuuf */
     }
 
-    /* Maddii (Overlay) */
     .nav-overlay {
         position: fixed;
         top: 0;
@@ -92,19 +81,12 @@
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.7);
-        z-index: 1500;
+        z-index: 2000;
+        /* Sidebar gadi, background ol */
         display: none;
     }
 
     .nav-overlay.active {
         display: block;
-    }
-}
-
-@media (min-width: 769px) {
-
-    .hamburger,
-    .nav-overlay {
-        display: none !important;
     }
 }

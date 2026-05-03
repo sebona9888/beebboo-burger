@@ -26,14 +26,14 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Maddii (Overlay) - Yeroo kana tuqan side bar-ichi ni cufama */}
+            {/* Maddii (Overlay) */}
             <div
                 className={`nav-overlay ${isOpen ? 'active' : ''}`}
                 onClick={closeMenu}
             ></div>
 
             <nav className="navbar">
-                {/* Hamburger - Ofumaan gara X-tti jijjiirama, dabalata hin barbaadu */}
+                {/* Hamburger Menu */}
                 <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
                     <span className="bar"></span>
                     <span className="bar"></span>
@@ -44,6 +44,7 @@ const Navbar = () => {
                     Beebboo <span style={burger3DStyle}>Burger</span>
                 </Link>
 
+                {/* Sidebar Links */}
                 <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
                     <li><Link to="/" className="nav-item" onClick={closeMenu}>Home</Link></li>
                     <li><Link to="/menu" className="nav-item" onClick={closeMenu}>Menu</Link></li>
