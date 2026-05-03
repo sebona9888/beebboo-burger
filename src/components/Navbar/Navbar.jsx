@@ -10,6 +10,7 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
+    // 3D Logo Styles
     const linkStyle = {
         textDecoration: 'none',
         display: 'inline-block'
@@ -29,36 +30,44 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar">
-            {/* 1. Hamburger Menu (Bitaa irra) */}
-            <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                <span className="bar"></span>
-                <span className="bar"></span>
-                <span className="bar"></span>
-            </div>
+        <>
+            {/* 1. Maddii (Overlay) - Sidebar ala yeroo tuqamu akka cufamuuf */}
+            <div
+                className={`nav-overlay ${isOpen ? 'active' : ''}`}
+                onClick={closeMenu}
+            ></div>
 
-            {/* 2. Logo (Gidduu ykn Bitaatti) */}
-            <Link to="/" className="logo" style={logo3DStyle}>
-                Beebboo <span style={burger3DStyle}>Burger</span>
-            </Link>
+            <nav className="navbar">
+                {/* 2. Hamburger Menu (Bitaa irra) */}
+                <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                </div>
 
-            {/* 3. Navigation Links (PC irratti wal-cinaa, Mobile irratti Sidebar) */}
-            <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                <li><Link to="/" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Home</Link></li>
-                <li><Link to="/menu" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Menu</Link></li>
-                <li><Link to="/about" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>About</Link></li>
-                <li><Link to="/contact" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Contact</Link></li>
-                <li><Link to="/payment" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Payment</Link></li>
-                <li><Link to="/admin" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Admin</Link></li>
-            </ul>
-
-            {/* 4. Cart Icon (Mirga irra) */}
-            <div className="nav-icons">
-                <Link to="/cart" className="cart-btn" style={{ ...linkStyle, color: '#fff' }}>
-                    🛒 <span className="cart-text">Cart ({cartCount})</span>
+                {/* 3. Logo */}
+                <Link to="/" className="logo" style={logo3DStyle}>
+                    Beebboo <span style={burger3DStyle}>Burger</span>
                 </Link>
-            </div>
-        </nav>
+
+                {/* 4. Navigation Links (Sidebar) */}
+                <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
+                    <li><Link to="/" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Home</Link></li>
+                    <li><Link to="/menu" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Menu</Link></li>
+                    <li><Link to="/about" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>About</Link></li>
+                    <li><Link to="/contact" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Contact</Link></li>
+                    <li><Link to="/payment" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Payment</Link></li>
+                    <li><Link to="/admin" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Admin</Link></li>
+                </ul>
+
+                {/* 5. Cart Icon (Mirga irra) */}
+                <div className="nav-icons">
+                    <Link to="/cart" className="cart-btn" style={{ ...linkStyle, color: '#fff' }}>
+                        🛒 <span className="cart-text">({cartCount})</span>
+                    </Link>
+                </div>
+            </nav>
+        </>
     );
 };
 
