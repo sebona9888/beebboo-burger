@@ -8,17 +8,19 @@ const Navbar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
 
     const location = useLocation();
 
-    // auto close sidebar when route changes
+    // auto close sidebar on route change
     useEffect(() => {
-        setTimeout(() => {
+        if (!isOpen) return;
+
+        const timer = window.setTimeout(() => {
             setIsOpen(false);
-            setShowSettings(false);
         }, 0);
-    }, [location]);
+
+        return () => window.clearTimeout(timer);
+    }, [location, isOpen]);
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleTheme = () => setDarkMode(!darkMode);
@@ -34,10 +36,7 @@ const Navbar = () => {
             <nav className={`navbar ${darkMode ? 'dark' : ''}`}>
 
                 {/* Hamburger */}
-                <div
-                    className={`hamburger ${isOpen ? 'active' : ''}`}
-                    onClick={toggleMenu}
-                >
+                <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -48,49 +47,32 @@ const Navbar = () => {
                     Beebboo <span>Burger 🍔</span>
                 </Link>
 
-                {/* Links */}
+                {/* Sidebar Links */}
                 <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
+
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/menu">Menu</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                     <li><Link to="/payment">Payment</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
+
+                    {/* SETTINGS INSIDE SIDEBAR */}
+                    <li className="settings-item">
+                        <button onClick={toggleTheme}>
+                            {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+                        </button>
+                    </li>
+
                 </ul>
 
-                {/* Right Side */}
+                {/* CART */}
                 <div className="nav-icons">
-
-                    {/* SETTINGS */}
-                    <div className="settings">
-                        <button
-                            className="settings-btn"
-                            onClick={() => setShowSettings(!showSettings)}
-                        >
-                            ⚙️
-                        </button>
-
-                        {showSettings && (
-                            <div className="settings-menu">
-                                <button onClick={toggleTheme}>
-                                    {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
-                                </button>
-
-                                <Link to="/admin">Admin Panel</Link>
-
-                                <button onClick={() => alert("Notifications ON 🔔")}>
-                                    Notifications
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* CART */}
                     <Link to="/cart" className="cart">
                         🛒 ({cartCount})
                     </Link>
-
                 </div>
+
             </nav>
         </>
     );

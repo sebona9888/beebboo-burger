@@ -12,11 +12,10 @@
 
     background: rgba(11, 14, 17, 0.6);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar.dark {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 /* ================= LOGO ================= */
@@ -38,21 +37,32 @@
     gap: 25px;
 }
 
-.nav-links li a {
+.nav-links li a,
+.nav-links li button {
     color: white;
     text-decoration: none;
-    transition: 0.3s;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.nav-links li a:hover {
+.nav-links li a:hover,
+.nav-links li button:hover {
     color: #ff9d00;
 }
 
-/* ================= ICONS ================= */
+/* SETTINGS ITEM LOOK */
+.settings-item {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
+}
+
+/* ================= CART ================= */
 .nav-icons {
     display: flex;
     align-items: center;
-    gap: 15px;
 }
 
 .cart {
@@ -71,8 +81,8 @@
     width: 25px;
     height: 3px;
     margin: 5px 0;
-    display: block;
     background: white;
+    display: block;
     transition: 0.3s;
 }
 
@@ -88,53 +98,6 @@
     transform: rotate(-45deg) translateY(-8px);
 }
 
-/* ================= SETTINGS ================= */
-.settings {
-    position: relative;
-}
-
-.settings-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: white;
-}
-
-.settings-menu {
-    position: absolute;
-    right: 0;
-    top: 35px;
-
-    background: #111;
-    padding: 10px;
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    min-width: 160px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    z-index: 5000;
-}
-
-.settings-menu a,
-.settings-menu button {
-    color: white;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.settings-menu a:hover,
-.settings-menu button:hover {
-    color: #ff9d00;
-}
-
 /* ================= OVERLAY ================= */
 .nav-overlay {
     position: fixed;
@@ -142,10 +105,8 @@
     left: 0;
     width: 100%;
     height: 100vh;
-
     background: rgba(0, 0, 0, 0.6);
     display: none;
-
     z-index: 2000;
 }
 
@@ -175,15 +136,11 @@
         padding: 100px 30px;
         gap: 25px;
 
-        transition: 0.3s ease;
+        transition: 0.3s;
         z-index: 3500;
     }
 
     .nav-links.open {
         left: 0;
-    }
-
-    .nav-links li a {
-        font-size: 20px;
     }
 }
