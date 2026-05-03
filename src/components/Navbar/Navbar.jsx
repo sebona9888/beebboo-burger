@@ -7,9 +7,11 @@ const Navbar = () => {
     const { cartCount } = useCart();
     const [isOpen, setIsOpen] = useState(false);
 
+    // Sidebar banuufi cufuuf
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
+    // 3D Logo Styles
     const logo3DStyle = {
         textDecoration: 'none',
         display: 'inline-block',
@@ -26,32 +28,36 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Maddii (Overlay) - Bakka kana yoo tuqxe side bar-ichi ni cufama */}
+            {/* 1. Maddii (Overlay) - Sidebar ala yeroo tuqamu akka cufamuuf */}
             <div
                 className={`nav-overlay ${isOpen ? 'active' : ''}`}
                 onClick={closeMenu}
             ></div>
 
             <nav className="navbar">
+                {/* 2. Hamburger Icon (Bitaa irra) */}
                 <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="bar"></span>
                 </div>
 
+                {/* 3. Logo */}
                 <Link to="/" className="logo" style={logo3DStyle}>
                     Beebboo <span style={burger3DStyle}>Burger</span>
                 </Link>
 
+                {/* 4. Navigation Links (Sidebar) */}
                 <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                    <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-                    <li><Link to="/menu" onClick={closeMenu}>Menu</Link></li>
-                    <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-                    <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-                    <li><Link to="/payment" onClick={closeMenu}>Payment</Link></li>
-                    <li><Link to="/admin" onClick={closeMenu}>Admin</Link></li>
+                    <li><Link to="/" className="nav-item" onClick={closeMenu}>Home</Link></li>
+                    <li><Link to="/menu" className="nav-item" onClick={closeMenu}>Menu</Link></li>
+                    <li><Link to="/about" className="nav-item" onClick={closeMenu}>About</Link></li>
+                    <li><Link to="/contact" className="nav-item" onClick={closeMenu}>Contact</Link></li>
+                    <li><Link to="/payment" className="nav-item" onClick={closeMenu}>Payment</Link></li>
+                    <li><Link to="/admin" className="nav-item" onClick={closeMenu}>Admin</Link></li>
                 </ul>
 
+                {/* 5. Cart Icon (Mirga irra) */}
                 <div className="nav-icons">
                     <Link to="/cart" className="cart-btn" style={{ textDecoration: 'none', color: '#fff' }}>
                         🛒 ({cartCount})
