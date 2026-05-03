@@ -1,48 +1,66 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/useCart';
 import './Navbar.css';
 
 const Navbar = () => {
     const { cartCount } = useCart();
-    const [isOpen, setIsOpen] = useState(false);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-    const closeMenu = () => setIsOpen(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location]);
 
     return (
         <>
-            {/* Overlay - Ensuring it doesn't block the sidebar */}
+            {/* Overlay */}
             <div
-                className={`nav-overlay ${isOpen ? 'active' : ''}`}
-                onMouseDown={closeMenu}
-            ></div>
+                className={`overlay ${isOpen ? 'show' : ''}`}
+                onClick={() => setIsOpen(false)}
+            />
 
             <nav className="navbar">
-                <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
+
+                {/* Hamburger */}
+                <div
+                    className={`hamburger ${isOpen ? 'active' : ''}`}
+                    onClick={() => setIsOpen(prev => !prev)}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
 
+                {/* Logo */}
                 <Link to="/" className="logo">
-                    Beebboo <span className="burger-text">Burger</span>
+                    Beebboo <span>Burger</span>
                 </Link>
 
-                {/* Added 'active-sidebar' class for explicit control */}
-                <ul className={`nav-links ${isOpen ? 'open active-sidebar' : ''}`}>
-                    <li><Link to="/" onClick={closeMenu} onMouseUp={closeMenu}>Home</Link></li>
-                    <li><Link to="/menu" onClick={closeMenu} onMouseUp={closeMenu}>Menu</Link></li>
-                    <li><Link to="/about" onClick={closeMenu} onMouseUp={closeMenu}>About</Link></li>
-                    <li><Link to="/contact" onClick={closeMenu} onMouseUp={closeMenu}>Contact</Link></li>
-                    <li><Link to="/admin" onClick={closeMenu} onMouseUp={closeMenu}>Admin</Link></li>
+                {/* Desktop menu */}
+                <ul className="nav-desktop">
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/menu">Menu</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/admin">Admin</Link></li>
                 </ul>
 
-                <div className="nav-icons">
-                    <Link to="/cart" className="cart-btn">
-                        🛒 ({cartCount})
-                    </Link>
+                {/* Cart */}
+                <div className="cart">
+                    <Link to="/cart">🛒 ({cartCount})</Link>
                 </div>
+
+                {/* MOBILE SIDEBAR */}
+                <ul className={`sidebar ${isOpen ? 'open' : ''}`}>
+                    <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+                    <li><Link to="/menu" onClick={() => setIsOpen(false)}>Menu</Link></li>
+                    <li><Link to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+                    <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+                    <li><Link to="/admin" onClick={() => setIsOpen(false)}>Admin</Link></li>
+                </ul>
+
             </nav>
         </>
     );

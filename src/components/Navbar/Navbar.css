@@ -1,73 +1,121 @@
-/* --- Desktop Logic --- */
+/* ================= NAVBAR ================= */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    height: 70px;
     padding: 0 5%;
-    background-color: #0b0e11;
+
+    background: #0b0e11;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    height: 70px;
+    z-index: 9999;
 }
 
-/* --- Mobile Logic --- */
+/* ================= LOGO ================= */
+.logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #ff9d00;
+}
+
+/* ================= DESKTOP ================= */
+.nav-desktop {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-desktop li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ================= CART ================= */
+.cart a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    display: block;
+    background: white;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+
+    width: 75%;
+    height: 100vh;
+
+    background: #111;
+    list-style: none;
+
+    padding: 100px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    transition: 0.3s ease;
+    z-index: 9998;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* ================= OVERLAY ================= */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+
+    z-index: 9997;
+}
+
+.overlay.show {
+    display: block;
+}
+
+/* ================= MOBILE FIX ================= */
 @media (max-width: 768px) {
+
     .hamburger {
         display: block;
-        z-index: 5000;
-        /* Extremely high to stay on top */
-        order: -1;
     }
 
-    .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        width: 65%;
-        height: 100vh;
-        background-color: #1a1a1a;
-        display: flex;
-        flex-direction: column;
-        padding: 100px 30px;
-        gap: 25px;
-        transition: 0.3s ease-in-out;
-        z-index: 4000;
-        /* Higher than overlay */
-        /* CRITICAL: This allows clicks to pass through when closed */
-        pointer-events: none;
-    }
-
-    .nav-links.open {
-        left: 0;
-        pointer-events: auto;
-        /* Re-enable clicks when open */
-    }
-
-    .nav-links li a {
-        color: white !important;
-        font-size: 1.4rem;
-        display: block;
-        width: 100%;
-        padding: 15px 0;
-        text-decoration: none;
-    }
-
-    .nav-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 3000;
-        /* Below the sidebar links */
+    .nav-desktop {
         display: none;
-        pointer-events: none;
-    }
-
-    .nav-overlay.active {
-        display: block;
-        pointer-events: auto;
     }
 }
