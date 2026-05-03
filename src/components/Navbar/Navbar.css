@@ -1,130 +1,73 @@
-/* ================= NAVBAR ================= */
+/* --- Desktop Logic --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    height: 70px;
-    background: #0b0e11;
+    background-color: #0b0e11;
     position: sticky;
     top: 0;
-    z-index: 5000;
+    z-index: 1000;
+    height: 70px;
 }
 
-/* DARK MODE */
-.navbar.dark {
-    background: #000;
-}
-
-/* ================= LOGO ================= */
-.logo {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.logo span {
-    color: #ff9d00;
-}
-
-/* ================= HAMBURGER ================= */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    z-index: 6000;
-}
-
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px 0;
-    background: white;
-    transition: 0.3s;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(8px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-8px);
-}
-
-/* ================= SIDEBAR ================= */
-.sidebar {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.sidebar li a,
-.settings-btn {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* ================= CART ================= */
-.cart a {
-    color: white;
-    text-decoration: none;
-}
-
-/* ================= OVERLAY ================= */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    z-index: 4000;
-}
-
-.overlay.show {
-    display: block;
-}
-
-/* ================= MOBILE ================= */
+/* --- Mobile Logic --- */
 @media (max-width: 768px) {
-
     .hamburger {
         display: block;
+        z-index: 5000;
+        /* Extremely high to stay on top */
+        order: -1;
     }
 
-    .sidebar {
+    .nav-links {
         position: fixed;
-        top: 0;
         left: -100%;
-        width: 70%;
+        top: 0;
+        width: 65%;
         height: 100vh;
-
-        background: #111;
+        background-color: #1a1a1a;
+        display: flex;
         flex-direction: column;
         padding: 100px 30px;
         gap: 25px;
-
-        transition: 0.3s ease;
-        z-index: 5000;
+        transition: 0.3s ease-in-out;
+        z-index: 4000;
+        /* Higher than overlay */
+        /* CRITICAL: This allows clicks to pass through when closed */
+        pointer-events: none;
     }
 
-    .sidebar.open {
+    .nav-links.open {
         left: 0;
+        pointer-events: auto;
+        /* Re-enable clicks when open */
     }
 
-    .sidebar li a,
-    .settings-btn {
-        font-size: 18px;
-        color: white;
+    .nav-links li a {
+        color: white !important;
+        font-size: 1.4rem;
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        text-decoration: none;
+    }
+
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 3000;
+        /* Below the sidebar links */
+        display: none;
+        pointer-events: none;
+    }
+
+    .nav-overlay.active {
+        display: block;
+        pointer-events: auto;
     }
 }

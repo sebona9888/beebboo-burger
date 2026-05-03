@@ -1,79 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../../context/useCart';
 import './Navbar.css';
 
 const Navbar = () => {
     const { cartCount } = useCart();
-
     const [isOpen, setIsOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
 
-    const location = useLocation();
-
-    // auto close on page change
-    useEffect(() => {
-        if (!isOpen) return;
-
-        const timeoutId = window.setTimeout(() => {
-            setIsOpen(false);
-        }, 0);
-
-        return () => window.clearTimeout(timeoutId);
-    }, [location, isOpen]);
+    const toggleMenu = () => setIsOpen(!isOpen);
+    const closeMenu = () => setIsOpen(false);
 
     return (
         <>
-            {/* Overlay */}
+            {/* Overlay - Ensuring it doesn't block the sidebar */}
             <div
-                className={`overlay ${isOpen ? 'show' : ''}`}
-                onClick={() => setIsOpen(false)}
-            />
+                className={`nav-overlay ${isOpen ? 'active' : ''}`}
+                onMouseDown={closeMenu}
+            ></div>
 
-            <nav className={`navbar ${darkMode ? 'dark' : ''}`}>
-
-                {/* Hamburger */}
-                <div
-                    className={`hamburger ${isOpen ? 'active' : ''}`}
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <nav className="navbar">
+                <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
                 </div>
 
-                {/* Logo */}
                 <Link to="/" className="logo">
-                    Beebboo <span>Burger</span>
+                    Beebboo <span className="burger-text">Burger</span>
                 </Link>
 
-                {/* Sidebar */}
-                <ul className={`sidebar ${isOpen ? 'open' : ''}`}>
-
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/menu">Menu</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/payment">Payment</Link></li>
-                    <li><Link to="/admin">Admin</Link></li>
-
-                    {/* SETTINGS INSIDE SIDEBAR */}
-                    <li>
-                        <button
-                            className="settings-btn"
-                            onClick={() => setDarkMode(!darkMode)}
-                        >
-                            {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
-                        </button>
-                    </li>
-
+                {/* Added 'active-sidebar' class for explicit control */}
+                <ul className={`nav-links ${isOpen ? 'open active-sidebar' : ''}`}>
+                    <li><Link to="/" onClick={closeMenu} onMouseUp={closeMenu}>Home</Link></li>
+                    <li><Link to="/menu" onClick={closeMenu} onMouseUp={closeMenu}>Menu</Link></li>
+                    <li><Link to="/about" onClick={closeMenu} onMouseUp={closeMenu}>About</Link></li>
+                    <li><Link to="/contact" onClick={closeMenu} onMouseUp={closeMenu}>Contact</Link></li>
+                    <li><Link to="/admin" onClick={closeMenu} onMouseUp={closeMenu}>Admin</Link></li>
                 </ul>
 
-                {/* Cart */}
-                <div className="cart">
-                    <Link to="/cart">🛒 ({cartCount})</Link>
+                <div className="nav-icons">
+                    <Link to="/cart" className="cart-btn">
+                        🛒 ({cartCount})
+                    </Link>
                 </div>
-
             </nav>
         </>
     );
