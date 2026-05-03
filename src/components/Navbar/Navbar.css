@@ -1,4 +1,4 @@
-/* --- Desktop & Base Styles --- */
+/* --- Base Styles --- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -14,30 +14,25 @@
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 20px;
 }
 
 .nav-item {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    transition: 0.3s;
-}
-
-.nav-item:hover {
-    color: #ff9d00;
 }
 
 /* --- Mobile Styling (Silkif) --- */
 @media (max-width: 768px) {
 
-    /* Hamburger Icon */
+    /* Hamburger Style */
     .hamburger {
         display: block;
         cursor: pointer;
-        z-index: 1200;
+        z-index: 1300;
+        /* Sidebar ol akka ta'uuf */
         order: -1;
-        /* Logo dura bitaatti fida */
     }
 
     .hamburger .bar {
@@ -62,7 +57,7 @@
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Sidebar - Halluu fi Visibility sirreeffame */
+    /* Sidebar Size fi Halluu */
     .nav-links {
         position: fixed;
         left: -100%;
@@ -70,33 +65,38 @@
         top: 0;
         flex-direction: column;
         background-color: #1a1a1a;
-        /* Background dukkanaa'aa */
         width: 60%;
-        /* Bal'ina qussatamaa */
+        /* Bal'ina xiqqeeffame */
         height: 100vh;
         align-items: flex-start;
-        /* Barreeffama bitaatti hiriirsa */
         padding: 100px 40px;
         gap: 30px;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.7);
-        z-index: 1150;
+        z-index: 1200;
         transition: left 0.3s ease-out;
     }
 
     .nav-links.open {
         left: 0;
-        /* Bitaa irraa dhufa */
+        /* Bitaa irraa dhufee banama */
     }
 
-    /* Halluu barreeffama sidebar keessaa (Adii akka ta'uuf) */
+    /* Halluu barreeffamaa sidebar keessaa */
     .nav-links li .nav-item {
         color: #ffffff !important;
+        /* Adii akka ta'uuf */
         font-size: 1.3rem;
         width: 100%;
         display: block;
+        transition: 0.2s;
     }
 
-    /* Maddii (Overlay) Styling */
+    .nav-links li .nav-item:active {
+        color: #ff9d00 !important;
+        /* Yeroo tuqamu orange ta'a */
+    }
+
+    /* Maddii (Overlay) */
     .nav-overlay {
         position: fixed;
         top: 0;
@@ -104,18 +104,18 @@
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.7);
+        /* Maddii isaa ni dukkaneessa */
         z-index: 1100;
         display: none;
-        /* Jalqaba ni dhokata */
     }
 
     .nav-overlay.active {
         display: block;
-        /* Sidebar yeroo banamu ni mul'ata */
+        /* Yeroo sidebar banamu mul'ata */
     }
 }
 
-/* PC irratti Hamburger fi Overlay dhoksuuf */
+/* PC irratti hamburger dhoksuuf */
 @media (min-width: 769px) {
 
     .hamburger,
