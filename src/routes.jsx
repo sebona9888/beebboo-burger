@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import MainLayout from "./Layouts/MainLayout";
 import Home from "./Pages/Home/Home";
 import Menu from "./Pages/Menu/Menu";
@@ -16,25 +17,27 @@ export const router = createBrowserRouter([
         path: "/",
         element: <MainLayout />,
         children: [
-            { path: "/", element: <Home /> },
-            { path: "/menu", element: <Menu /> },
-            { path: "/about", element: <About /> },
-            { path: "/contact", element: <Contact /> },
-            { path: "/cart", element: <Cart /> },
-            { path: "/checkout", element: <Checkout /> },
-            { path: "/payment", element: <Payment /> },
+            { index: true, element: <Home /> },   // ✅ fixed
+            { path: "menu", element: <Menu /> },
+            { path: "about", element: <About /> },
+            { path: "contact", element: <Contact /> },
+            { path: "cart", element: <Cart /> },
+            { path: "checkout", element: <Checkout /> },
+            { path: "payment", element: <Payment /> },
         ],
     },
-    // --- Admin Routes MainLayout Keessaa Baafamaniiru ---
-    // Kun akka Navbar-riin dashboard irratti hin mul'anne godha
+
+    // Admin (no MainLayout)
     {
         path: "/admin",
-        element: <AdminDashboard />
+        element: <AdminDashboard />,
     },
     {
         path: "/admin/add",
-        element: <AddBurger />
+        element: <AddBurger />,
     },
+
+    // 404
     {
         path: "*",
         element: <NotFound />,

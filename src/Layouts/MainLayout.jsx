@@ -1,22 +1,24 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
-// Folder 'components' qubee xiqqaan jiraachuu isaa ijaan argineerra
-// Maaloo folder 'Navbar' fi 'Footer' keessoo jiran qubee guddadiin ta'uu mirkaneessi
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
-import './MainLayout.css';
-
 const MainLayout = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
-        <div className="app-container">
+        <>
             <Navbar />
-            <main className="main-content">
+            <main>
                 <Outlet />
             </main>
             <Footer />
-        </div>
+        </>
     );
 };
 

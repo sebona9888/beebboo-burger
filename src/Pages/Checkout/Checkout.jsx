@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useCart } from '../../context/useCart';
-import axios from 'axios';
 import './Checkout.css';
+import { useCreateOrder } from '../../hooks/useOrders'
+import { toast } from 'react-hot-toast';
 
 const Checkout = () => {
     const { cartItems, totalPrice, clearCart } = useCart();
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+    const { mutate: createOrder , isPending} = useCreateOrder();
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -30,21 +32,14 @@ const Checkout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!BACKEND_URL) {
-            alert("Backend URL hin argamne! Vercel Settings keessatti galchaa.");
-            return;
-        }
-
-        const API_BASE = BACKEND_URL.endsWith('/') ? BACKEND_URL.slice(0, -1) : BACKEND_URL;
-
         if (cartItems.length === 0) {
-            alert("Korbofni keessan duwwaa dha!");
+            toast.error("Korbofni keessan duwwaa dha!");
             return;
         }
 
         // Kaffaltii Screenshot dirqama gochuuf (Yoo Cash hin taane)
         if (formData.paymentMethod !== 'Cash' && !screenshot) {
-            alert("Maaloo, screenshot kaffaltii fe'aa!");
+            toast.success("Maaloo, screenshot kaffaltii fe'aa!");
             return;
         }
 
@@ -52,29 +47,23 @@ const Checkout = () => {
 
         try {
             const data = new FormData();
-            data.append('fullName', formData.fullName);
-            data.append('phone', formData.phone);
-            data.append('address', formData.address);
-            data.append('paymentMethod', formData.paymentMethod);
-            data.append('totalPrice', totalPrice);
-            data.append('items', JSON.stringify(cartItems));
+            createOrder({
+                ...formData,
+                totalPrice,
+                items: cartItems
+            });
 
             if (screenshot) {
                 data.append('screenshot', screenshot); // ✅ Multer backend irratti kana barbaada
             }
 
-            await axios.post(`${API_BASE}/api/orders`, data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-
-            alert(`Tole ${formData.fullName}, Ajajni keessan milkaa'eera!`);
             setPreview(null);
             setScreenshot(null);
             clearCart();
 
         } catch (err) {
             console.error("Error:", err.response?.data || err.message);
-            alert(err.response?.data?.message || "Dogoggorri uumameera!");
+            toast.error(err.response?.data?.message || "Dogoggorri uumameera!");
         } finally {
             setLoading(false);
         }
@@ -113,7 +102,7 @@ const Checkout = () => {
                 )}
 
                 <button type="submit" disabled={loading}>
-                    {loading ? "Ergamaa jira..." : `Order Now (${totalPrice} ETB)`}
+                    {isPending ? "Ergamaa jira..." : `Order Now (${totalPrice} ETB)`}
                 </button>
             </form>
         </div>
