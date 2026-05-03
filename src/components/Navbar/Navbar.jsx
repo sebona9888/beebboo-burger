@@ -15,7 +15,8 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <Link to="/" className="logo" style={linkStyle}>
+            {/* Beebboo bifa adii (#fff) gochuun background gurraacha irratti akka mul'atu gooneera */}
+            <Link to="/" className="logo" style={{ ...linkStyle, color: '#fff' }}>
                 Beebboo <span style={{ color: '#ff9d00' }}>Burger</span>
             </Link>
 
@@ -29,7 +30,7 @@ const Navbar = () => {
             </ul>
 
             <div className="nav-icons">
-                <Link to="/cart" className="cart-btn" style={{ ...linkStyle, color: '#000' }}>
+                <Link to="/cart" className="cart-btn" style={{ ...linkStyle, color: '#fff' }}>
                     🛒 Cart ({cartCount})
                 </Link>
             </div>
