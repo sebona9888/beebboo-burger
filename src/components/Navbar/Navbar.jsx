@@ -31,7 +31,7 @@ const Navbar = () => {
 
     return (
         <>
-            {/* 1. Maddii (Overlay) - Sidebar ala yeroo tuqamu akka cufamuuf */}
+            {/* 1. Maddii (Overlay) - Bakka sidebar ala jiru yeroo tuqan akka cufamuuf */}
             <div
                 className={`nav-overlay ${isOpen ? 'active' : ''}`}
                 onClick={closeMenu}
