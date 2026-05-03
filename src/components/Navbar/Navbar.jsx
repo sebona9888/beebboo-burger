@@ -5,9 +5,10 @@ import './Navbar.css';
 
 const Navbar = () => {
     const { cartCount } = useCart();
-    const [isOpen, setIsOpen] = useState(false); // Meenuu too'achuuf
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
+    const closeMenu = () => setIsOpen(false);
 
     const linkStyle = {
         textDecoration: 'none',
@@ -29,30 +30,32 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <Link to="/" className="logo" style={logo3DStyle}>
-                Beebboo <span style={burger3DStyle}>Burger</span>
-            </Link>
-
-            {/* Sarara Sadii (Hamburger) - Mobile irratti qofa mul'ata */}
+            {/* 1. Hamburger Menu (Bitaa irra) */}
             <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
                 <span className="bar"></span>
                 <span className="bar"></span>
                 <span className="bar"></span>
             </div>
 
-            {/* Nav Links - Mobile irratti sidebar ta'a */}
+            {/* 2. Logo (Gidduu ykn Bitaatti) */}
+            <Link to="/" className="logo" style={logo3DStyle}>
+                Beebboo <span style={burger3DStyle}>Burger</span>
+            </Link>
+
+            {/* 3. Navigation Links (PC irratti wal-cinaa, Mobile irratti Sidebar) */}
             <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                <li><Link to="/" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>Home</Link></li>
-                <li><Link to="/menu" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>Menu</Link></li>
-                <li><Link to="/about" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>About</Link></li>
-                <li><Link to="/contact" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>Contact</Link></li>
-                <li><Link to="/payment" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>Payment</Link></li>
-                <li><Link to="/admin" style={{ ...linkStyle, color: '#fff' }} onClick={() => setIsOpen(false)}>Admin</Link></li>
+                <li><Link to="/" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Home</Link></li>
+                <li><Link to="/menu" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Menu</Link></li>
+                <li><Link to="/about" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>About</Link></li>
+                <li><Link to="/contact" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Contact</Link></li>
+                <li><Link to="/payment" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Payment</Link></li>
+                <li><Link to="/admin" style={{ ...linkStyle, color: '#fff' }} onClick={closeMenu}>Admin</Link></li>
             </ul>
 
+            {/* 4. Cart Icon (Mirga irra) */}
             <div className="nav-icons">
                 <Link to="/cart" className="cart-btn" style={{ ...linkStyle, color: '#fff' }}>
-                    🛒 Cart ({cartCount})
+                    🛒 <span className="cart-text">Cart ({cartCount})</span>
                 </Link>
             </div>
         </nav>
