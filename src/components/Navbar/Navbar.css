@@ -1,154 +1,76 @@
-/* --- NAVBAR PREMIUM COMPACT UI --- */
-
+/* --- General Navbar Styling --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 8%;
-    background-color: rgba(2, 6, 23, 0.95);
-    backdrop-filter: blur(12px);
-    position: fixed;
+    padding: 1rem 2rem;
+    background-color: #0b0e11;
+    position: sticky;
     top: 0;
-    width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-    box-sizing: border-box;
-}
-
-.navbar-logo {
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    color: #ffffff !important;
-    text-transform: uppercase;
-    font-family: 'Outfit', sans-serif;
-    text-decoration: none;
-}
-
-.navbar-logo span {
-    color: #f97316;
-    /* Orange Beebboo */
 }
 
 .nav-links {
     display: flex;
-    gap: 25px;
     list-style: none;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+    gap: 20px;
+    transition: 0.3s ease-in-out;
 }
 
-.nav-links a {
-    text-decoration: none !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
-/* --- 1. ACTIVE LINK HIGHLIGHTING --- */
-.nav-links a.active {
-    color: #FFD700 !important;
-    /* Gold */
-    background: rgba(255, 215, 0, 0.1);
-    border-bottom: 2px solid #FFD700;
-}
-
-.nav-links a:hover {
-    color: #FFD700 !important;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* --- 2. 3D PREMIUM CART BUTTON --- */
-.cart-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #111827;
-    color: #FFD700 !important;
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: 1px solid #FFD700;
-    font-weight: 800;
-    text-decoration: none !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.cart-btn:hover {
-    background: #FFD700;
-    color: #000 !important;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-}
-
-.cart-count {
-    background: #ef4444;
-    /* Diimaa */
-    color: white;
-    font-size: 0.75rem;
-    padding: 2px 8px;
-    border-radius: 50%;
-    margin-left: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* --- MOBILE RESPONSIVE (Fix for Screenshot_20260502-072021.jpg) --- */
+/* --- Mobile Styling (Sidebar) --- */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 15px 5% !important;
-        position: relative;
-        flex-direction: column !important;
-        gap: 12px;
-        width: 100%;
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1100;
     }
 
-    .navbar-logo {
-        font-size: 1.2rem;
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+    /* Sarara sadii gara X-tti jijjiiruuf */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     .nav-links {
-        flex-wrap: wrap !important;
+        position: fixed;
+        right: -100%;
+        /* Jalqaba irratti dhokata */
+        top: 0;
+        flex-direction: column;
+        background-color: #1a1a1a;
+        width: 70%;
+        height: 100vh;
+        align-items: center;
         justify-content: center;
-        gap: 8px !important;
-        width: 100%;
+        gap: 30px;
+        box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
     }
 
-    .nav-links a {
-        background: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 6px 12px !important;
-        font-size: 0.75rem !important;
-        border-radius: 10px !important;
+    .nav-links.open {
+        right: 0;
+        /* Gara keessatti dhufa */
     }
+}
 
-    .cart-btn {
-        padding: 6px 15px;
-        font-size: 0.75rem;
-        margin-top: 5px;
-    }
-
-    /* Search & Filters */
-    .search-container {
-        width: 90% !important;
-        margin: 20px auto;
-    }
-
-    .filter-buttons {
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 10px 20px;
-        gap: 10px;
-        scrollbar-width: none;
-    }
-
-    .filter-buttons::-webkit-scrollbar {
+/* PC irratti hamburger dhoksuuf */
+@media (min-width: 769px) {
+    .hamburger {
         display: none;
     }
 }
