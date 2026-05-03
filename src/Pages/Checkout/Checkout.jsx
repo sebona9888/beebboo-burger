@@ -15,17 +15,26 @@ const Checkout = () => {
     });
 
     const [screenshot, setScreenshot] = useState(null);
+    const [preview, setPreview] = useState(null); // Suuraa fe'ame sana arguuf
     const [loading, setLoading] = useState(false);
+
+    // ✅ Suuraa yeroo filattu preview isaa agarsiisuuf
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setScreenshot(file);
+            setPreview(URL.createObjectURL(file)); // Linkii yeroo gabaabaa uuma
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!BACKEND_URL) {
-            alert("Vercel irratti VITE_BACKEND_URL hin argamne!");
+            alert("Backend URL hin argamne! Vercel Settings keessatti galchaa.");
             return;
         }
 
-        // Linkii dhumarratti '/' yoo qabaate qulqulleessuuf
         const API_BASE = BACKEND_URL.endsWith('/') ? BACKEND_URL.slice(0, -1) : BACKEND_URL;
 
         if (cartItems.length === 0) {
@@ -33,6 +42,7 @@ const Checkout = () => {
             return;
         }
 
+        // Kaffaltii Screenshot dirqama gochuuf (Yoo Cash hin taane)
         if (formData.paymentMethod !== 'Cash' && !screenshot) {
             alert("Maaloo, screenshot kaffaltii fe'aa!");
             return;
@@ -50,19 +60,20 @@ const Checkout = () => {
             data.append('items', JSON.stringify(cartItems));
 
             if (screenshot) {
-                data.append('screenshot', screenshot);
+                data.append('screenshot', screenshot); // ✅ Multer backend irratti kana barbaada
             }
 
-            // Headers 'multipart/form-data' ta'uu isaa mirkaneessi
             await axios.post(`${API_BASE}/api/orders`, data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
             alert(`Tole ${formData.fullName}, Ajajni keessan milkaa'eera!`);
+            setPreview(null);
+            setScreenshot(null);
             clearCart();
 
         } catch (err) {
-            console.error("Error Details:", err.response?.data || err.message);
+            console.error("Error:", err.response?.data || err.message);
             alert(err.response?.data?.message || "Dogoggorri uumameera!");
         } finally {
             setLoading(false);
@@ -77,14 +88,28 @@ const Checkout = () => {
                 <input name="phone" placeholder="Bilbila" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} required />
                 <textarea name="address" placeholder="Teessoo" onChange={(e) => setFormData({ ...formData, address: e.target.value })} required />
 
-                <select name="paymentMethod" onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}>
-                    <option value="Cash">Cash</option>
-                    <option value="Telebirr">Telebirr</option>
-                    <option value="CBE">CBE</option>
-                </select>
+                <div className="payment-section">
+                    <label>Method Kaffaltii:</label>
+                    <select name="paymentMethod" onChange={(e) => {
+                        setFormData({ ...formData, paymentMethod: e.target.value });
+                        if (e.target.value === 'Cash') { setPreview(null); setScreenshot(null); }
+                    }}>
+                        <option value="Cash">Cash (Kaffaltii harkaatti)</option>
+                        <option value="Telebirr">Telebirr</option>
+                        <option value="CBE">CBE (Bankii Daldala Itiyoophiyaa)</option>
+                    </select>
+                </div>
 
                 {formData.paymentMethod !== 'Cash' && (
-                    <input type="file" accept="image/*" onChange={(e) => setScreenshot(e.target.files[0])} required />
+                    <div className="file-upload">
+                        <label>Screenshot Kaffaltii Fe'i:</label>
+                        <input type="file" accept="image/*" onChange={handleFileChange} required />
+                        {preview && (
+                            <div className="image-preview">
+                                <img src={preview} alt="Screenshot Preview" />
+                            </div>
+                        )}
+                    </div>
                 )}
 
                 <button type="submit" disabled={loading}>
