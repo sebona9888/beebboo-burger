@@ -1,129 +1,58 @@
-/* --- Root Variables for Consistency --- */
 :root {
-    --primary-gold: #ffc107;
-    --primary-hover: #e0a800;
-    --bg-dark: #121212;
-    --card-bg: #1e1e1e;
+    --primary: #ffc107;
+    --primary-dark: #e0a800;
+    --bg-dark: #0b0b0b;
+    --card-bg: #1a1a1a;
     --text-main: #ffffff;
-    --text-muted: #b0b0b0;
+    --text-muted: #a0a0a0;
     --danger: #ff4d4d;
     --success: #00c853;
     --info: #00b0ff;
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
+    --radius: 12px;
 }
 
-/* --- Global Reset & Layout --- */
+/* --- Global Layout --- */
 .admin-container {
-    max-width: 1100px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    /* Sidebar | Main | Orders */
+    gap: 20px;
     padding: 20px;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-dark);
-    color: var(--text-main);
     min-height: 100vh;
+    font-family: 'Inter', sans-serif;
 }
 
-/* --- Login Overlay --- */
-.login-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.login-card {
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid #333;
-}
-
-.login-card h2 {
-    color: var(--primary-gold);
-    margin-bottom: 25px;
-}
-
-.login-card input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background: #121212;
-    color: white;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-.login-card button {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary-gold);
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.login-card button:hover {
-    background: var(--primary-hover);
-}
-
-/* --- Header Section --- */
+/* Header/Sidebar Fix */
 .admin-header-flex {
+    grid-column: 1;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #333;
-    margin-bottom: 30px;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+    border: 1px solid #333;
 }
 
 .admin-title {
-    color: var(--primary-gold);
-    font-size: 1.8rem;
+    color: var(--primary);
+    font-size: 1.4rem;
+    text-align: center;
     margin: 0;
 }
 
-.btn-logout {
-    background: transparent;
-    color: var(--danger);
-    border: 1px solid var(--danger);
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.btn-logout:hover {
-    background: var(--danger);
-    color: white;
-}
-
-/* --- Forms --- */
+/* --- Forms Section (Center) --- */
 .add-burger-form {
+    grid-column: 2;
     background: var(--card-bg);
     padding: 25px;
-    border-radius: var(--border-radius);
-    margin-bottom: 40px;
+    border-radius: var(--radius);
     border: 1px solid #333;
-}
-
-.add-burger-form h3 {
-    margin-top: 0;
-    color: var(--primary-gold);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
 }
 
 .form-group {
@@ -132,187 +61,136 @@
     gap: 15px;
 }
 
-/* Mobile-first adjustment for grid */
-@media (max-width: 768px) {
-    .form-group {
-        grid-template-columns: 1fr;
-    }
-}
-
-.form-group input,
-.form-group select,
 .form-group textarea {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background: #121212;
-    color: white;
-    font-size: 0.95rem;
-}
-
-.form-group textarea {
-    grid-column: 1 / -1;
-    /* spans full width */
-    height: 80px;
+    grid-column: span 2;
 }
 
 .form-buttons {
-    grid-column: 1 / -1;
+    grid-column: span 2;
     display: flex;
     gap: 10px;
 }
 
-.btn-add {
-    flex: 2;
-    background: var(--primary-gold);
-    color: black;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
+/* --- Content Scrolling Sections --- */
+.burgers-section {
+    grid-column: 2;
+    margin-top: 20px;
 }
 
-.btn-cancel {
-    flex: 1;
-    background: #444;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* --- List Sections --- */
-.burgers-section,
 .orders-section {
-    margin-bottom: 40px;
+    grid-column: 3;
+    background: #141414;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid #222;
 }
 
-.burger-list,
-.order-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-/* --- Burger Items --- */
-.burger-item {
+/* --- Professional Cards --- */
+.burger-item,
+.order-item {
     background: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border: 1px solid #333;
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.burger-item:hover,
+.order-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.burger-info strong {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .category-tag {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--primary-gold);
-    margin-top: 5px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(255, 193, 7, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
 }
 
-.btn-edit {
-    background: var(--info);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-.btn-delete {
-    background: var(--danger);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-/* --- Order Items --- */
-.order-item {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    border: 1px solid #333;
-    position: relative;
-}
-
-.order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
+/* --- Status Tags --- */
 .status-tag {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    border-radius: 5px;
+    float: right;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
     font-weight: bold;
 }
 
 .status-tag.Pending {
-    background: #5c4d00;
+    background: #423a00;
     color: #ffc107;
 }
 
 .status-tag.Delivered {
-    background: #003d1a;
+    background: #003a14;
     color: #00c853;
 }
 
-.status-tag.Cancelled {
-    background: #3d0000;
-    color: #ff4d4d;
+/* --- Buttons --- */
+button {
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    transition: 0.3s;
 }
 
-.order-details p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    color: var(--text-muted);
+.btn-add {
+    background: var(--primary);
+    color: #000;
+    width: 100%;
+    padding: 12px;
 }
 
-.items-ordered {
-    font-style: italic;
-    color: var(--primary-gold);
-    margin-top: 10px;
-    font-size: 0.85rem;
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 8px;
 }
 
-.btn-view {
-    display: inline-block;
-    margin-top: 15px;
-    color: var(--info);
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: 1px solid var(--info);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.order-actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.order-actions select {
-    background: #121212;
+.btn-logout:hover {
+    background: var(--danger);
     color: white;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #444;
 }
 
-/* --- Utilities --- */
-.loading-text {
-    text-align: center;
-    color: var(--primary-gold);
-    grid-column: 1 / -1;
+.btn-edit {
+    background: var(--info);
+    color: white;
+    padding: 6px 12px;
+}
+
+.btn-delete {
+    background: var(--danger);
+    color: white;
+    padding: 6px 12px;
+}
+
+/* --- Responsive (Moobaayilaaf) --- */
+@media (max-width: 1024px) {
+    .admin-container {
+        grid-template-columns: 1fr;
+        /* Hunda wal-jala galcha */
+    }
+
+    .admin-header-flex,
+    .add-burger-form,
+    .orders-section {
+        grid-column: 1;
+        position: static;
+    }
+
+    .form-group {
+        grid-template-columns: 1fr;
+    }
 }
