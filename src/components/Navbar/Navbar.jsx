@@ -6,8 +6,6 @@ import './Navbar.css';
 const Navbar = () => {
     const { cartCount } = useCart();
     const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-    { isAdmin && <Link to="/admin">Admin</Link> }
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -41,7 +39,8 @@ const Navbar = () => {
                     <li><Link to="/menu">Menu</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/admin">Admin</Link></li>
+                    {/* Qindaa'ina Admin itti dabalame */}
+                    {isAdmin && <li><Link to="/admin">Admin</Link></li>}
                 </ul>
 
                 {/* Cart */}
@@ -55,7 +54,8 @@ const Navbar = () => {
                     <li><Link to="/menu" onClick={() => setIsOpen(false)}>Menu</Link></li>
                     <li><Link to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
                     <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
-                    <li><Link to="/admin" onClick={() => setIsOpen(false)}>Admin</Link></li>
+                    {/* Qindaa'ina Admin itti dabalame */}
+                    {isAdmin && <li><Link to="/admin" onClick={() => setIsOpen(false)}>Admin</Link></li>}
                 </ul>
 
             </nav>
