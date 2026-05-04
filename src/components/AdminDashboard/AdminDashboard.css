@@ -213,4 +213,17 @@
     .btn-delete {
         width: 100%;
     }
+}.btn-logout {
+    background-color: #ff4d4d;
+    /* Diimaa */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-logout:hover {
+    background-color: #cc0000;
 }
