@@ -208,4 +208,142 @@
     .form-buttons {
         grid-column: span 1;
     }
+}/* --- Global Sidebar for Orders --- */
+.orders-sidebar {
+    background-color: #0d0d0d;
+    padding: 25px;
+    border-radius: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    border-left: 1px solid #222;
+}
+
+.orders-sidebar h3 {
+    color: #ffc107;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ffc107;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* --- 3D Order Card Style --- */
+.order-card-3d {
+    background: linear-gradient(145deg, #1a1a1a, #111111);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 16px #050505,
+        -4px -4px 12px rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.order-card-3d:hover {
+    transform: translateY(-5px);
+    border-color: #ffc107;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Header Area (Name & Status) --- */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.order-header strong {
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.status-badge.Pending {
+    background: #423a00;
+    color: #ffc107;
+}
+
+.status-badge.Delivered {
+    background: #003a14;
+    color: #00c853;
+}
+
+.status-badge.Cancelled {
+    background: #3a0000;
+    color: #ff4d4d;
+}
+
+/* --- Body Details --- */
+.order-body {
+    border-top: 1px solid #222;
+    padding-top: 10px;
+}
+
+.order-body p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #b0b0b0;
+}
+
+.item-text {
+    color: #ffc107;
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: block;
+}
+
+.total-price {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin-top: 10px;
+    display: block;
+}
+
+/* --- Action Area (Dropdown & Delete) --- */
+.order-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.order-footer select {
+    flex: 2;
+    background: #000;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-haqi {
+    flex: 1;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-haqi:hover {
+    background: #cc0000;
 }
