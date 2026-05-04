@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../../context/useCart';
 import './Navbar.css';
 
 const Navbar = () => {
     const { cartCount } = useCart();
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
 
+    { isAdmin && <Link to="/admin">Admin</Link> }
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
-
-    useEffect(() => {
-        setIsOpen(false);
-    }, [location]);
 
     return (
         <>
