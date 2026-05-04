@@ -6,6 +6,7 @@ const AdminDashboard = () => {
     const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [burgers, setBurgers] = useState([]);
+    const [orders, setOrders] = useState([]); // ✅ Orders state dabalameera
     const [isLoading, setIsLoading] = useState(false);
 
     const [newBurger, setNewBurger] = useState({
@@ -16,8 +17,7 @@ const AdminDashboard = () => {
         description: ''
     });
 
-    // --- 1. RAGAALEE FIDUU (GET) ---
-    // URL '/api/burgers' irraa gara '/api/menu' tti jijjiirameera (FIX 404)
+    // --- 1. RAGAALEE BURGER FIDUU (GET) ---
     const fetchBurgers = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -30,51 +30,82 @@ const AdminDashboard = () => {
         }
     }, []);
 
+    // --- 2. AJAJOOTA FIDUU (GET ORDERS) ---
+    const fetchOrders = useCallback(async () => {
+        try {
+            const res = await axios.get('https://beebboo-backend.onrender.com/api/orders', {
+                headers: { 'admin-secret': 'admin123' } // Backend middleware wajjin kan deemu
+            });
+            setOrders(res.data);
+        } catch (error) {
+            console.error("Orders fiduun hin danda'amne:", error);
+        }
+    }, []);
+
     useEffect(() => {
         if (isAuthenticated) {
             fetchBurgers();
+            fetchOrders(); // ✅ Login yoo godhame ajajootas ni fida
         }
-    }, [isAuthenticated, fetchBurgers]);
+    }, [isAuthenticated, fetchBurgers, fetchOrders]);
 
-    // --- 2. BURGER BALLEESSUU (DELETE) ---
+    // --- 3. BURGER BALLEESSUU (DELETE) ---
     const deleteBurger = async (id) => {
         if (window.confirm("Dhuguma burger kana balleessuu barbaadduu?")) {
             try {
-                const response = await axios.delete(`https://beebboo-backend.onrender.com/api/menu/${id}`, {
+                await axios.delete(`https://beebboo-backend.onrender.com/api/menu/${id}`, {
                     headers: { 'admin_secret': 'admin123' }
                 });
-
-                if (response.status === 200) {
-                    alert("Burger milkiin haqameera!");
-                    fetchBurgers();
-                }
+                alert("Burger milkiin haqameera!");
+                fetchBurgers();
             } catch {
                 alert("Balleessuun hin danda'amne!");
             }
         }
     };
 
-    // --- 3. BURGER HAARAA DABALUU (POST) ---
+    // --- 4. BURGER HAARAA DABALUU (POST) ---
     const handleAddBurger = async (e) => {
         e.preventDefault();
-
-        if (newBurger.price <= 0) {
-            return alert("Gatiin 0 gadi ta'uu hin qabu!");
-        }
+        if (newBurger.price <= 0) return alert("Gatiin 0 gadi ta'uu hin qabu!");
 
         try {
             const dataToSend = { ...newBurger, countInStock: 20 };
-
             await axios.post('https://beebboo-backend.onrender.com/api/menu', dataToSend, {
                 headers: { 'admin_secret': 'admin123' }
             });
-
             alert("Burger haaraan milkiidhaan dabalameera!");
-            // Form qulqulleessuu
             setNewBurger({ name: '', price: '', image: '', category: 'Beef', description: '' });
             fetchBurgers();
         } catch {
             alert("Dabalachuun hin danda'amne!");
+        }
+    };
+
+    // --- 5. STATUS JIJJIIRUU (PUT ORDER) ---
+    const updateOrderStatus = async (id, newStatus) => {
+        try {
+            await axios.put(`https://beebboo-backend.onrender.com/api/orders/${id}`,
+                { status: newStatus },
+                { headers: { 'admin-secret': 'admin123' } });
+            alert("Status jijjiirameera!");
+            fetchOrders();
+        } catch {
+            alert("Status jijjiiruun hin danda'amne!");
+        }
+    };
+
+    // --- 6. AJAJA HAQUU (DELETE ORDER) ---
+    const deleteOrder = async (id) => {
+        if (window.confirm("Ajaja kana haquu barbaaddu?")) {
+            try {
+                await axios.delete(`https://beebboo-backend.onrender.com/api/orders/${id}`, {
+                    headers: { 'admin-secret': 'admin123' }
+                });
+                fetchOrders();
+            } catch {
+                alert("Haquun hin danda'amne!");
+            }
         }
     };
 
@@ -109,6 +140,7 @@ const AdminDashboard = () => {
         <div className="admin-container">
             <h2 className="admin-title">Beebboo Admin Panel</h2>
 
+            {/* --- BURGER DABALUU --- */}
             <form className="add-burger-form" onSubmit={handleAddBurger}>
                 <h3>Burger Haaraa Galchi</h3>
                 <div className="form-group">
@@ -148,28 +180,66 @@ const AdminDashboard = () => {
                 </div>
             </form>
 
+            {/* --- LISTII BURGERS --- */}
             <div className="burgers-section">
                 <h3>Burgers List</h3>
                 <div className="burger-list">
                     {isLoading ? (
                         <p className="loading-text">Hancaa jira (Loading)...</p>
-                    ) : burgers.length > 0 ? (
+                    ) : (
                         burgers.map((burger) => (
                             <div key={burger._id} className="burger-item">
                                 <div className="burger-info">
                                     <strong>{burger.name}</strong> - {burger.price} ETB
                                     <span className="category-tag">{burger.category}</span>
                                 </div>
-                                <button
-                                    className="btn-delete"
-                                    onClick={() => deleteBurger(burger._id)}
-                                >
-                                    Balleessi
-                                </button>
+                                <button className="btn-delete" onClick={() => deleteBurger(burger._id)}>Balleessi</button>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
+
+            {/* --- LISTII AJAJOOTAA (ORDERS) --- */}
+            <div className="orders-section">
+                <h3>Ajajoota (Orders)</h3>
+                <div className="order-list">
+                    {orders.length > 0 ? (
+                        orders.map((order) => (
+                            <div key={order._id} className="order-item">
+                                <div className="order-header">
+                                    <strong>{order.fullName}</strong> ({order.phone})
+                                    <span className={`status-tag ${order.status}`}>{order.status}</span>
+                                </div>
+                                <div className="order-details">
+                                    <p>Address: {order.address}</p>
+                                    <p>Gatii Waliigalaa: {order.totalPrice} ETB</p>
+                                    <div className="items-ordered">
+                                        {order.items.map((item, index) => (
+                                            <span key={index}>{item.name} (x{item.quantity}), </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {order.screenshot && (
+                                    <a href={order.screenshot} target="_blank" rel="noreferrer" className="btn-view">Suuraa Kaffaltii</a>
+                                )}
+
+                                <div className="order-actions">
+                                    <select
+                                        value={order.status}
+                                        onChange={(e) => updateOrderStatus(order._id, e.target.value)}
+                                    >
+                                        <option value="Pending">Pending</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                    </select>
+                                    <button onClick={() => deleteOrder(order._id)} className="btn-delete">Haqi</button>
+                                </div>
                             </div>
                         ))
                     ) : (
-                        <p>Burger'n hin jiru.</p>
+                        <p>Ajajni dhufe hin jiru.</p>
                     )}
                 </div>
             </div>

@@ -4,6 +4,9 @@ import AdminDashboard from './components/AdminDashboard';
 import Home from './pages/Home';
 import ScrollToTop from './components/ScrollToTop';
 import MainLayout from './Layouts/MainLayout';
+// ✅ Kutaalee dabalataa (Optional: Akka component keetti check godhi)
+// import Menu from './pages/Menu'; 
+// import About from './pages/About';
 
 // 1. Kutaa nageenyaa (ProtectedRoute) kanatti dabalame
 const ProtectedRoute = ({ children }) => {
@@ -24,6 +27,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
+
+            {/* ✅ Route-wwan dabalataa asitti dabalameera */}
+            {/* <Route path="menu" element={<Menu />} /> */}
+            {/* <Route path="about" element={<About />} /> */}
           </Route>
 
           {/* 2. AdminDashboard ProtectedRoute keessa galeera */}
@@ -35,6 +42,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ✅ Yoo URL dogoggoraa barreesse gara Home-tti deebisa */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </CartProvider>
     </Router>
