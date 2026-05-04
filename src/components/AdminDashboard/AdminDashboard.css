@@ -1,72 +1,211 @@
+/* --- Root Variables --- */
 :root {
-    --primary: #ffc107;
-    --dark: #1a1a1a;
-    --card: #2d2d2d;
-    --text: #f4f4f4;
+    --primary-color: #ffc107;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-light: #f4f4f4;
     --danger: #ff4d4d;
+    --success: #28a745;
     --edit: #4d94ff;
+    --transition: all 0.3s ease;
 }
 
-body { background-color: #121212; margin: 0; }
-
+/* --- Login Overlay & Card (AMMA SIRREEFFAMEERA) --- */
 .login-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; display: flex; justify-content: center; align-items: center; z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    /* Duubni guutummaatti gurraacha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .login-card {
-    background: var(--card); padding: 30px; border-radius: 12px;
-    width: 90%; max-width: 320px; text-align: center;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
 }
 
 .login-card input {
-    width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px;
-    border: 1px solid #444; background: #111; color: #fff; box-sizing: border-box;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .login-card button {
-    width: 100%; padding: 12px; background: var(--primary); border: none;
-    border-radius: 6px; font-weight: bold; cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
 }
 
+.login-card button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* --- Main Layout --- */
 .admin-container {
-    max-width: 800px; margin: 20px auto; padding: 15px;
-    background: var(--dark); color: var(--text); border-radius: 12px;
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-header-flex {
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
 }
 
-.btn-logout { background: var(--danger); color: #fff; border: none; padding: 8px 15px; border-radius: 6px; }
-
-.add-burger-form { background: var(--card); padding: 20px; border-radius: 10px; margin-bottom: 30px; }
-
-.form-group { display: flex; flex-direction: column; gap: 12px; }
-
-.form-group input, .form-group select, .form-group textarea {
-    padding: 12px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff;
+.admin-title {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 0;
 }
 
-.btn-add { background: var(--primary); padding: 15px; border: none; border-radius: 6px; font-weight: bold; }
-
-.btn-cancel { background: #666; color: #fff; padding: 10px; border: none; border-radius: 6px; }
-
-.burger-item, .order-item {
-    background: var(--card); padding: 15px; border-radius: 8px;
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+/* --- Buttons --- */
+.btn-logout {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.btn-edit { background: var(--edit); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; margin-right: 5px; }
-.btn-delete { background: var(--danger); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; }
+.btn-edit {
+    background-color: var(--edit);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+}
 
-.status-tag { margin-left: 10px; font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; }
-.status-tag.Pending { background: var(--primary); color: #000; }
-.status-tag.Delivered { background: #28a745; color: #fff; }
+.btn-cancel {
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-/* Mobile Adjustments */
+/* --- Form Styles --- */
+.add-burger-form {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--primary-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: white;
+}
+
+.form-group textarea {
+    grid-column: span 2;
+    height: 80px;
+}
+
+.form-buttons {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-add {
+    padding: 15px;
+    background: var(--primary-color);
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* --- Burger List --- */
+.burger-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* --- Mobile --- */
 @media (max-width: 600px) {
-    .burger-item, .order-item { flex-direction: column; gap: 10px; text-align: center; }
-    .item-actions { width: 100%; display: flex; justify-content: center; }
+    .admin-header-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group textarea,
+    .form-buttons {
+        grid-column: span 1;
+    }
 }
