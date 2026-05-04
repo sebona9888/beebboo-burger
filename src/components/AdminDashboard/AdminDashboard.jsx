@@ -6,8 +6,12 @@ const AdminDashboard = () => {
     const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [burgers, setBurgers] = useState([]);
-    const [orders, setOrders] = useState([]); // ✅ Orders state dabalameera
+    const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    // --- DABALATA: EDIT STATE ---
+    const [isEditing, setIsEditing] = useState(false);
+    const [editId, setEditId] = useState(null);
 
     const [newBurger, setNewBurger] = useState({
         name: '',
@@ -17,7 +21,6 @@ const AdminDashboard = () => {
         description: ''
     });
 
-    // --- 1. RAGAALEE BURGER FIDUU (GET) ---
     const fetchBurgers = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -30,11 +33,10 @@ const AdminDashboard = () => {
         }
     }, []);
 
-    // --- 2. AJAJOOTA FIDUU (GET ORDERS) ---
     const fetchOrders = useCallback(async () => {
         try {
             const res = await axios.get('https://beebboo-backend.onrender.com/api/orders', {
-                headers: { 'admin-secret': 'admin123' } // Backend middleware wajjin kan deemu
+                headers: { 'admin-secret': 'admin123' }
             });
             setOrders(res.data);
         } catch (error) {
@@ -45,16 +47,15 @@ const AdminDashboard = () => {
     useEffect(() => {
         if (isAuthenticated) {
             fetchBurgers();
-            fetchOrders(); // ✅ Login yoo godhame ajajootas ni fida
+            fetchOrders();
         }
     }, [isAuthenticated, fetchBurgers, fetchOrders]);
 
-    // --- 3. BURGER BALLEESSUU (DELETE) ---
     const deleteBurger = async (id) => {
         if (window.confirm("Dhuguma burger kana balleessuu barbaadduu?")) {
             try {
                 await axios.delete(`https://beebboo-backend.onrender.com/api/menu/${id}`, {
-                    headers: { 'admin_secret': 'admin123' }
+                    headers: { 'admin-secret': 'admin123' }
                 });
                 alert("Burger milkiin haqameera!");
                 fetchBurgers();
@@ -64,25 +65,53 @@ const AdminDashboard = () => {
         }
     };
 
-    // --- 4. BURGER HAARAA DABALUU (POST) ---
+    // --- DABALATA: EDIT MODE SEENUU ---
+    const startEdit = (burger) => {
+        setIsEditing(true);
+        setEditId(burger._id);
+        setNewBurger({
+            name: burger.name,
+            price: burger.price,
+            image: burger.image,
+            category: burger.category,
+            description: burger.description
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // --- DABALATA: CANCEL EDIT ---
+    const cancelEdit = () => {
+        setIsEditing(false);
+        setEditId(null);
+        setNewBurger({ name: '', price: '', image: '', category: 'Beef', description: '' });
+    };
+
     const handleAddBurger = async (e) => {
         e.preventDefault();
         if (newBurger.price <= 0) return alert("Gatiin 0 gadi ta'uu hin qabu!");
 
         try {
-            const dataToSend = { ...newBurger, countInStock: 20 };
-            await axios.post('https://beebboo-backend.onrender.com/api/menu', dataToSend, {
-                headers: { 'admin_secret': 'admin123' }
-            });
-            alert("Burger haaraan milkiidhaan dabalameera!");
-            setNewBurger({ name: '', price: '', image: '', category: 'Beef', description: '' });
+            if (isEditing) {
+                // UPDATE (PUT)
+                await axios.put(`https://beebboo-backend.onrender.com/api/menu/${editId}`, newBurger, {
+                    headers: { 'admin-secret': 'admin123' }
+                });
+                alert("Burger sirreeffameera!");
+            } else {
+                // CREATE (POST)
+                const dataToSend = { ...newBurger, countInStock: 20 };
+                await axios.post('https://beebboo-backend.onrender.com/api/menu', dataToSend, {
+                    headers: { 'admin-secret': 'admin123' }
+                });
+                alert("Burger haaraan milkiidhaan dabalameera!");
+            }
+            cancelEdit();
             fetchBurgers();
         } catch {
-            alert("Dabalachuun hin danda'amne!");
+            alert("Hojichi hin milkoofne!");
         }
     };
 
-    // --- 5. STATUS JIJJIIRUU (PUT ORDER) ---
     const updateOrderStatus = async (id, newStatus) => {
         try {
             await axios.put(`https://beebboo-backend.onrender.com/api/orders/${id}`,
@@ -95,7 +124,6 @@ const AdminDashboard = () => {
         }
     };
 
-    // --- 6. AJAJA HAQUU (DELETE ORDER) ---
     const deleteOrder = async (id) => {
         if (window.confirm("Ajaja kana haquu barbaaddu?")) {
             try {
@@ -118,6 +146,12 @@ const AdminDashboard = () => {
         }
     };
 
+    // --- DABALATA: LOGOUT ---
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        setPassword("");
+    };
+
     if (!isAuthenticated) {
         return (
             <div className="login-overlay">
@@ -138,11 +172,14 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-container">
-            <h2 className="admin-title">Beebboo Admin Panel</h2>
+            <div className="admin-header-flex">
+                <h2 className="admin-title">Beebboo Admin Panel</h2>
+                <button className="btn-logout" onClick={handleLogout}>Ba'i (Logout)</button>
+            </div>
 
-            {/* --- BURGER DABALUU --- */}
+            {/* --- BURGER DABALUU / SIRREESSUU --- */}
             <form className="add-burger-form" onSubmit={handleAddBurger}>
-                <h3>Burger Haaraa Galchi</h3>
+                <h3>{isEditing ? "Burger Sirreessi" : "Burger Haaraa Galchi"}</h3>
                 <div className="form-group">
                     <input
                         type="text" placeholder="Maqaa Burger..."
@@ -176,7 +213,14 @@ const AdminDashboard = () => {
                         value={newBurger.description}
                         onChange={(e) => setNewBurger({ ...newBurger, description: e.target.value })}
                     />
-                    <button type="submit" className="btn-add">Dabalau +</button>
+                    <div className="form-buttons">
+                        <button type="submit" className="btn-add">
+                            {isEditing ? "Haaromsi" : "Dabalau +"}
+                        </button>
+                        {isEditing && (
+                            <button type="button" className="btn-cancel" onClick={cancelEdit}>Dhiisi</button>
+                        )}
+                    </div>
                 </div>
             </form>
 
@@ -193,7 +237,10 @@ const AdminDashboard = () => {
                                     <strong>{burger.name}</strong> - {burger.price} ETB
                                     <span className="category-tag">{burger.category}</span>
                                 </div>
-                                <button className="btn-delete" onClick={() => deleteBurger(burger._id)}>Balleessi</button>
+                                <div className="burger-actions">
+                                    <button className="btn-edit" onClick={() => startEdit(burger)}>Edit</button>
+                                    <button className="btn-delete" onClick={() => deleteBurger(burger._id)}>Balleessi</button>
+                                </div>
                             </div>
                         ))
                     )}
