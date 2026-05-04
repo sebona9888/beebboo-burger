@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
-    const navigate = useNavigate();
-
     const [password, setPassword] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [burgers, setBurgers] = useState([]);
@@ -19,17 +16,8 @@ const AdminDashboard = () => {
         description: ''
     });
 
-    // ✅ Load admin from localStorage
-    useEffect(() => {
-        const saved = localStorage.getItem("isAdmin");
-        if (saved === "true") {
-            setIsAuthenticated(true);
-        } else {
-            navigate("/"); // block access
-        }
-    }, [navigate]);
-
-    // --- FETCH BURGERS ---
+    // --- 1. RAGAALEE FIDUU (GET) ---
+    // URL '/api/burgers' irraa gara '/api/menu' tti jijjiirameera (FIX 404)
     const fetchBurgers = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -48,18 +36,13 @@ const AdminDashboard = () => {
         }
     }, [isAuthenticated, fetchBurgers]);
 
-    // --- DELETE BURGER ---
+    // --- 2. BURGER BALLEESSUU (DELETE) ---
     const deleteBurger = async (id) => {
         if (window.confirm("Dhuguma burger kana balleessuu barbaadduu?")) {
             try {
-                const response = await axios.delete(
-                    `https://beebboo-backend.onrender.com/api/menu/${id}`,
-                    {
-                        headers: {
-                            'admin_secret': import.meta.env.VITE_ADMIN_SECRET || 'admin123'
-                        }
-                    }
-                );
+                const response = await axios.delete(`https://beebboo-backend.onrender.com/api/menu/${id}`, {
+                    headers: { 'admin_secret': 'admin123' }
+                });
 
                 if (response.status === 200) {
                     alert("Burger milkiin haqameera!");
@@ -71,7 +54,7 @@ const AdminDashboard = () => {
         }
     };
 
-    // --- ADD BURGER ---
+    // --- 3. BURGER HAARAA DABALUU (POST) ---
     const handleAddBurger = async (e) => {
         e.preventDefault();
 
@@ -82,50 +65,28 @@ const AdminDashboard = () => {
         try {
             const dataToSend = { ...newBurger, countInStock: 20 };
 
-            await axios.post(
-                'https://beebboo-backend.onrender.com/api/menu',
-                dataToSend,
-                {
-                    headers: {
-                        'admin_secret': import.meta.env.VITE_ADMIN_SECRET || 'admin123'
-                    }
-                }
-            );
-
-            alert("Burger haaraan milkiidhaan dabalameera!");
-
-            setNewBurger({
-                name: '',
-                price: '',
-                image: '',
-                category: 'Beef',
-                description: ''
+            await axios.post('https://beebboo-backend.onrender.com/api/menu', dataToSend, {
+                headers: { 'admin_secret': 'admin123' }
             });
 
+            alert("Burger haaraan milkiidhaan dabalameera!");
+            // Form qulqulleessuu
+            setNewBurger({ name: '', price: '', image: '', category: 'Beef', description: '' });
             fetchBurgers();
         } catch {
             alert("Dabalachuun hin danda'amne!");
         }
     };
 
-    // --- LOGIN ---
     const handleLogin = (e) => {
         e.preventDefault();
         if (password === "admin123") {
             setIsAuthenticated(true);
-            localStorage.setItem("isAdmin", "true");
         } else {
             alert("Password dogoggora!");
         }
     };
 
-    // --- LOGOUT ---
-    const logout = () => {
-        localStorage.removeItem("isAdmin");
-        window.location.href = "/";
-    };
-
-    // --- LOGIN SCREEN ---
     if (!isAuthenticated) {
         return (
             <div className="login-overlay">
@@ -144,28 +105,21 @@ const AdminDashboard = () => {
         );
     }
 
-    // --- ADMIN PANEL ---
     return (
         <div className="admin-container">
-            <button onClick={logout} style={{ marginBottom: "10px" }}>
-                Logout
-            </button>
-
             <h2 className="admin-title">Beebboo Admin Panel</h2>
 
             <form className="add-burger-form" onSubmit={handleAddBurger}>
                 <h3>Burger Haaraa Galchi</h3>
                 <div className="form-group">
                     <input
-                        type="text"
-                        placeholder="Maqaa Burger..."
+                        type="text" placeholder="Maqaa Burger..."
                         value={newBurger.name}
                         onChange={(e) => setNewBurger({ ...newBurger, name: e.target.value })}
                         required
                     />
                     <input
-                        type="number"
-                        placeholder="Gatii (ETB)..."
+                        type="number" placeholder="Gatii (ETB)..."
                         value={newBurger.price}
                         onChange={(e) => setNewBurger({ ...newBurger, price: e.target.value })}
                         required
@@ -180,8 +134,7 @@ const AdminDashboard = () => {
                         <option value="Special">Special Beebboo</option>
                     </select>
                     <input
-                        type="text"
-                        placeholder="URL Suuraa..."
+                        type="text" placeholder="URL Suuraa..."
                         value={newBurger.image}
                         onChange={(e) => setNewBurger({ ...newBurger, image: e.target.value })}
                         required
