@@ -1,58 +1,147 @@
+/* --- Root Variables --- */
 :root {
-    --primary: #ffc107;
-    --primary-dark: #e0a800;
-    --bg-dark: #0b0b0b;
-    --card-bg: #1a1a1a;
-    --text-main: #ffffff;
-    --text-muted: #a0a0a0;
+    --primary-color: #ffc107;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-light: #f4f4f4;
     --danger: #ff4d4d;
-    --success: #00c853;
-    --info: #00b0ff;
-    --radius: 12px;
+    --success: #28a745;
+    --edit: #4d94ff;
+    --transition: all 0.3s ease;
 }
 
-/* --- Global Layout --- */
-.admin-container {
-    display: grid;
-    grid-template-columns: 280px 1fr 320px;
-    /* Sidebar | Main | Orders */
-    gap: 20px;
-    padding: 20px;
-    background-color: var(--bg-dark);
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
+/* --- Login Overlay & Card (AMMA SIRREEFFAMEERA) --- */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    /* Duubni guutummaatti gurraacha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-/* Header/Sidebar Fix */
-.admin-header-flex {
-    grid-column: 1;
+.login-card {
     background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.login-card button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* --- Main Layout --- */
+.admin-container {
+    max-width: 950px;
+    margin: 40px auto;
     padding: 20px;
-    border-radius: var(--radius);
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: fit-content;
-    border: 1px solid #333;
+}
+
+.admin-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
 }
 
 .admin-title {
-    color: var(--primary);
-    font-size: 1.4rem;
-    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.8rem;
     margin: 0;
 }
 
-/* --- Forms Section (Center) --- */
+/* --- Buttons --- */
+.btn-logout {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-edit {
+    background-color: var(--edit);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-cancel {
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- Form Styles --- */
 .add-burger-form {
-    grid-column: 2;
     background: var(--card-bg);
     padding: 25px;
-    border-radius: var(--radius);
-    border: 1px solid #333;
-    height: fit-content;
-    position: sticky;
-    top: 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--primary-color);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -61,136 +150,62 @@
     gap: 15px;
 }
 
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: white;
+}
+
 .form-group textarea {
     grid-column: span 2;
+    height: 80px;
 }
 
 .form-buttons {
     grid-column: span 2;
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
-/* --- Content Scrolling Sections --- */
-.burgers-section {
-    grid-column: 2;
-    margin-top: 20px;
-}
-
-.orders-section {
-    grid-column: 3;
-    background: #141414;
-    padding: 15px;
-    border-radius: var(--radius);
-    border: 1px solid #222;
-}
-
-/* --- Professional Cards --- */
-.burger-item,
-.order-item {
-    background: var(--card-bg);
-    border: 1px solid #333;
-    border-radius: var(--radius);
-    padding: 18px;
-    margin-bottom: 15px;
-    transition: transform 0.2s;
-}
-
-.burger-item:hover,
-.order-item:hover {
-    border-color: var(--primary);
-    transform: translateY(-3px);
-}
-
-.burger-info strong {
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.category-tag {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--primary);
-    background: rgba(255, 193, 7, 0.1);
-    padding: 3px 8px;
-    border-radius: 4px;
-}
-
-/* --- Status Tags --- */
-.status-tag {
-    float: right;
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-
-.status-tag.Pending {
-    background: #423a00;
-    color: #ffc107;
-}
-
-.status-tag.Delivered {
-    background: #003a14;
-    color: #00c853;
-}
-
-/* --- Buttons --- */
-button {
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 6px;
-    border: none;
-    transition: 0.3s;
-}
-
 .btn-add {
-    background: var(--primary);
-    color: #000;
-    width: 100%;
-    padding: 12px;
+    padding: 15px;
+    background: var(--primary-color);
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.btn-logout {
-    background: transparent;
-    border: 1px solid var(--danger);
-    color: var(--danger);
-    padding: 8px;
+/* --- Burger List --- */
+.burger-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.btn-logout:hover {
-    background: var(--danger);
-    color: white;
-}
-
-.btn-edit {
-    background: var(--info);
-    color: white;
-    padding: 6px 12px;
-}
-
-.btn-delete {
-    background: var(--danger);
-    color: white;
-    padding: 6px 12px;
-}
-
-/* --- Responsive (Moobaayilaaf) --- */
-@media (max-width: 1024px) {
-    .admin-container {
-        grid-template-columns: 1fr;
-        /* Hunda wal-jala galcha */
-    }
-
-    .admin-header-flex,
-    .add-burger-form,
-    .orders-section {
-        grid-column: 1;
-        position: static;
+/* --- Mobile --- */
+@media (max-width: 600px) {
+    .admin-header-flex {
+        flex-direction: column;
+        gap: 15px;
     }
 
     .form-group {
         grid-template-columns: 1fr;
+    }
+
+    .form-group textarea,
+    .form-buttons {
+        grid-column: span 1;
     }
 }
