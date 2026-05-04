@@ -6,41 +6,23 @@ body {
     color: white;
 }
 
-/* --- MAIN LAYOUT --- */
 .admin-container {
     padding: 20px;
+    max-width: 1100px;
+    margin: auto;
 }
 
-/* GRID LAYOUT */
-.admin-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 20px;
-}
-
-/* LEFT SIDE (FORM) */
-.left-panel {
-    position: sticky;
-    top: 20px;
-}
-
-/* RIGHT SIDE */
-.right-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* --- HEADER --- */
+/* --- HEADER (TOP) --- */
 .admin-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .admin-title {
-    font-size: 24px;
+    font-size: 26px;
     color: #38bdf8;
 }
 
@@ -58,11 +40,12 @@ body {
     background: rgba(255, 255, 255, 0.05);
     padding: 20px;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
 }
 
 .add-burger-form h3 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #22c55e;
 }
 
 .form-group input,
@@ -105,11 +88,19 @@ textarea {
     color: white;
 }
 
+/* --- SECTION TITLES --- */
+.burgers-section h3,
+.orders-section h3 {
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
 /* --- BURGER LIST --- */
 .burger-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
+    margin-bottom: 40px;
 }
 
 .burger-item {
@@ -118,16 +109,14 @@ textarea {
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* FIX TEXT OVERFLOW */
 .burger-info {
     word-break: break-word;
 }
 
-/* ACTION BUTTONS */
 .burger-actions {
     display: flex;
     gap: 8px;
@@ -150,9 +139,7 @@ textarea {
     color: white;
 }
 
-/* CATEGORY TAG */
 .category-tag {
-    display: inline-block;
     margin-left: 8px;
     font-size: 12px;
     background: #1e293b;
@@ -173,25 +160,21 @@ textarea {
     border-radius: 12px;
 }
 
-/* HEADER FIX */
 .order-header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
-/* PREVENT OVERLAP */
 .order-header strong {
     flex: 1;
 }
 
-/* STATUS TAG */
 .status-tag {
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 12px;
-    white-space: nowrap;
 }
 
 .status-tag.Pending {
@@ -206,12 +189,11 @@ textarea {
     background: red;
 }
 
-/* DETAILS FIX */
 .order-details {
+    margin-top: 10px;
     word-break: break-word;
 }
 
-/* ORDER ACTIONS */
 .order-actions {
     margin-top: 10px;
     display: flex;
@@ -223,13 +205,6 @@ textarea {
     padding: 8px;
     border-radius: 6px;
     border: none;
-}
-
-/* VIEW BUTTON */
-.btn-view {
-    display: inline-block;
-    margin-top: 10px;
-    color: #38bdf8;
 }
 
 /* --- LOGIN --- */
@@ -247,30 +222,12 @@ textarea {
     width: 300px;
 }
 
-.login-card input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.login-card button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    background: #0ea5e9;
-    border: none;
-    color: white;
-}
-
-/* --- MOBILE FIX --- */
-@media (max-width: 900px) {
-    .admin-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .left-panel {
-        position: relative;
-        top: 0;
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .admin-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 
     .burger-list {
@@ -282,11 +239,6 @@ textarea {
         align-items: flex-start;
     }
 
-    .burger-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-
     .order-actions {
         flex-direction: column;
     }
@@ -294,16 +246,5 @@ textarea {
     .order-actions select,
     .order-actions button {
         width: 100%;
-    }
-}
-
-/* EXTRA SMALL */
-@media (max-width: 500px) {
-    .admin-container {
-        padding: 10px;
-    }
-
-    .add-burger-form {
-        padding: 15px;
     }
 }
